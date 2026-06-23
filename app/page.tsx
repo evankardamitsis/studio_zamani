@@ -8,7 +8,7 @@ export default function Home() {
 
         <div className="flex flex-col items-center gap-3">
           <p className="max-w-sm text-sm leading-relaxed tracking-wide text-neutral-400">
-            Interior Architecture and Collectable Design Advisory
+            Interior Architecture and Collectible Design Advisory
           </p>
           <p className="text-xs tracking-[0.25em] text-neutral-500 uppercase mt-4">
             Coming Soon
