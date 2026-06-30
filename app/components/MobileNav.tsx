@@ -64,16 +64,6 @@ export function MobileNav() {
           ))}
         </nav>
 
-        <div className="absolute bottom-10 left-10 flex flex-col gap-2">
-          <div className="flex gap-4">
-            <Link href="/cookies" className="text-[10px] text-[#242020]/40 leading-none">Cookies</Link>
-            <Link href="/privacy" className="text-[10px] text-[#242020]/40 leading-none">Privacy</Link>
-          </div>
-          <p className="text-[10px] text-[#242020]/30 leading-tight">© {new Date().getFullYear()} Studio Zamani</p>
-          <a href="https://belowthefold.gr" target="_blank" rel="noopener noreferrer" className="text-[10px] text-[#242020]/30 leading-tight hover:text-[#242020] transition-colors">
-            Designed & Developed by Below The Fold
-          </a>
-        </div>
       </div>
     </>
   );

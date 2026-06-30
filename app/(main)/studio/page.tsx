@@ -4,7 +4,7 @@ export default function StudioPage() {
   return (
     <div className="min-h-screen bg-[#f6f8f8] flex flex-col md:flex-row">
       {/* Image */}
-      <div className="relative w-full h-[60vw] md:w-[55%] md:h-auto md:min-h-screen overflow-hidden">
+      <div className="relative w-full h-[75vw] md:w-[55%] md:h-auto md:min-h-screen overflow-hidden">
         <PlaceholderImage
           src="/images/image 2.jpg"
           alt="Mania Zamani, founder of Studio Zamani"
@@ -16,13 +16,13 @@ export default function StudioPage() {
 
       {/* Bio text */}
       <div className="w-full md:w-[45%] flex flex-col justify-end px-6 pb-12 pt-8 md:px-14 md:pb-16 md:pt-24">
-        <p className="text-[11px] uppercase tracking-[0.12em] leading-snug mb-8 max-w-[480px]" style={{fontFamily: "Conneqt, sans-serif", fontWeight: 700}}>
+        <p className="text-[13px] uppercase tracking-[0.12em] leading-snug mb-8 max-w-[480px]" style={{fontFamily: "Conneqt, sans-serif", fontWeight: 700}}>
           Mania Zamani is the exquisite result of one woman&apos;s life
           journey. An odyssey that took her from her native Tehran to New York,
           her adopted home.
         </p>
 
-        <div className="flex flex-col gap-4 text-[11px] leading-[1.65] text-[#1a1a1a] max-w-[480px]">
+        <div className="flex flex-col gap-4 text-[13px] leading-[1.65] text-[#1a1a1a] max-w-[480px]">
           <p>
             As a child, MANIA ZAMANI was fascinated with architecture and
             minerals. Her passion for precious stones came from a deeply rooted

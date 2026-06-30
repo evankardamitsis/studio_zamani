@@ -82,22 +82,70 @@ export function JewelryGallery() {
     return () => window.removeEventListener("keydown", onKey);
   }, [lightboxIndex, closeLightbox, prevImage, nextImage]);
 
+  if (isMobile) {
+    const col0 = images.filter((_, i) => i % 2 === 0);
+    const col1 = images.filter((_, i) => i % 2 === 1);
+    return (
+      <>
+        {/* ── Mobile 2-column masonry grid ─────────────────────────────── */}
+        <div className="px-4 pt-2 pb-20">
+          <div className="flex gap-3 items-start">
+            {/* Column 0 — starts flush */}
+            <div className="flex-1 flex flex-col gap-3">
+              {col0.map((img, ci) => {
+                const globalIdx = ci * 2;
+                return (
+                  <div key={globalIdx} className="select-none" onClick={() => setLightboxIndex(globalIdx)}>
+                    <img src={img.src} alt={img.alt} className="w-full h-auto object-cover" draggable={false} />
+                  </div>
+                );
+              })}
+            </div>
+            {/* Column 1 — offset down */}
+            <div className="flex-1 flex flex-col gap-3" style={{ marginTop: 48 }}>
+              {col1.map((img, ci) => {
+                const globalIdx = ci * 2 + 1;
+                return (
+                  <div key={globalIdx} className="select-none" onClick={() => setLightboxIndex(globalIdx)}>
+                    <img src={img.src} alt={img.alt} className="w-full h-auto object-cover" draggable={false} />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        {/* ── Lightbox ─────────────────────────────────────────────────── */}
+        {lightboxIndex !== null && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0d0d0d]/95" onClick={closeLightbox}>
+            <button onClick={closeLightbox} aria-label="Close" className="absolute top-7 right-6 text-white/50 hover:text-white text-2xl leading-none transition-colors">×</button>
+            <div className="max-h-[88vh] max-w-[90vw] flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
+              <Image src={images[lightboxIndex].src} alt={images[lightboxIndex].alt} width={1200} height={1600} className="max-h-[88vh] w-auto object-contain" priority />
+            </div>
+            {lightboxIndex > 0 && <button onClick={(e) => { e.stopPropagation(); prevImage(); }} aria-label="Previous image" className="absolute left-4 top-1/2 -translate-y-1/2 text-white/50 hover:text-white text-2xl transition-colors px-2 py-4">←</button>}
+            {lightboxIndex < images.length - 1 && <button onClick={(e) => { e.stopPropagation(); nextImage(); }} aria-label="Next image" className="absolute right-4 top-1/2 -translate-y-1/2 text-white/50 hover:text-white text-2xl transition-colors px-2 py-4">→</button>}
+            <p className="absolute bottom-7 left-1/2 -translate-x-1/2 text-white/40 text-[10px] tracking-[0.2em] uppercase">{String(lightboxIndex + 1).padStart(2, "0")} / {String(images.length).padStart(2, "0")}</p>
+          </div>
+        )}
+      </>
+    );
+  }
+
   return (
     <>
-      {/* ── Carousel ─────────────────────────────────────────────────────── */}
+      {/* ── Desktop Carousel ──────────────────────────────────────────────── */}
       <div
         className="relative h-screen overflow-hidden"
-        style={isMobile ? {} : { marginLeft: -SIDEBAR, width: "100vw" }}
+        style={{ marginLeft: -SIDEBAR, width: "100vw" }}
       >
         <div
           ref={scrollRef}
           className="flex h-full overflow-x-auto scrollbar-hide touch-pan-x"
           style={{
             scrollbarWidth: "none",
-            gap: isMobile ? 12 : GAP,
+            gap: GAP,
             cursor: "grab",
-            paddingLeft: isMobile ? 20 : SIDEBAR,
-            paddingRight: isMobile ? 20 : 0,
+            paddingLeft: SIDEBAR,
           }}
           onPointerDown={onPointerDown}
           onPointerMove={onPointerMove}
@@ -108,43 +156,17 @@ export function JewelryGallery() {
             <div
               key={i}
               className="flex-shrink-0 select-none"
-              style={{
-                width: colWidth,
-                marginTop: isMobile ? 0 : OFFSETS[i % 3],
-              }}
+              style={{ width: colWidth, marginTop: OFFSETS[i % 3] }}
               onClick={() => { if (!didDrag.current) setLightboxIndex(i); }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={img.src}
-                alt={img.alt}
-                className="w-full h-auto object-cover pointer-events-none"
-                draggable={false}
-              />
+              <img src={img.src} alt={img.alt} className="w-full h-auto object-cover pointer-events-none" draggable={false} />
             </div>
           ))}
         </div>
 
-        {/* Arrow buttons — desktop only */}
-        {!isMobile && (
-          <>
-            <button
-              onClick={() => scroll("left")}
-              aria-label="Previous"
-              className="absolute top-1/2 -translate-y-1/2 text-[#1a1a1a]/40 hover:text-[#1a1a1a] transition-colors text-lg select-none leading-none"
-              style={{ left: SIDEBAR + 16 }}
-            >
-              ←
-            </button>
-            <button
-              onClick={() => scroll("right")}
-              aria-label="Next"
-              className="absolute right-5 top-1/2 -translate-y-1/2 text-[#1a1a1a]/40 hover:text-[#1a1a1a] transition-colors text-lg select-none leading-none"
-            >
-              →
-            </button>
-          </>
-        )}
+        <button onClick={() => scroll("left")} aria-label="Previous" className="absolute top-1/2 -translate-y-1/2 text-[#1a1a1a]/40 hover:text-[#1a1a1a] transition-colors text-lg select-none leading-none" style={{ left: SIDEBAR + 16 }}>←</button>
+        <button onClick={() => scroll("right")} aria-label="Next" className="absolute right-5 top-1/2 -translate-y-1/2 text-[#1a1a1a]/40 hover:text-[#1a1a1a] transition-colors text-lg select-none leading-none">→</button>
       </div>
 
       {/* ── Lightbox ─────────────────────────────────────────────────────── */}

@@ -2,9 +2,9 @@ import Image from "next/image";
 
 export default function ContactPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-[#f6f8f8] pt-10 pr-10">
+    <div className="flex flex-col min-h-screen bg-[#f6f8f8] md:pt-10 md:pr-10">
       {/* Full-bleed image */}
-      <div className="relative flex-1 overflow-hidden min-h-0">
+      <div className="relative flex-1 overflow-hidden min-h-0 min-h-[50vw] md:min-h-0">
         <Image
           src="/images/Mania_5 1.png"
           alt="Studio Zamani"
@@ -15,52 +15,58 @@ export default function ContactPage() {
         />
       </div>
 
-      {/* 4-column contact footer */}
-      <div className="flex-shrink-0 flex flex-wrap md:flex-nowrap gap-[44px] px-10 py-10 border-t border-[#242020]/10">
-        <div className="flex-1 flex flex-col gap-5">
-          <p className="text-[14px] uppercase text-[#242020] leading-none" style={{fontFamily: "Conneqt, sans-serif", fontWeight: 700}}>Studio</p>
-          <p className="text-[12px] text-[#242020] leading-[1.4] whitespace-pre-line">{"MANIAZAMANI FINE JEWELRY 505\nGreenwich Street, Suite 2F New York\n+1 646 685 4584"}</p>
-        </div>
+      {/* Contact info */}
+      <div className="flex-shrink-0 border-t border-[#242020]/10 pb-[60px] md:pb-0">
+        {/* Mobile: 2×2 grid */}
+        <div className="grid grid-cols-2 gap-x-6 gap-y-8 px-6 py-8 md:hidden">
+          <div className="flex flex-col gap-3">
+            <p className="text-[16px] uppercase text-[#242020] leading-none" style={{fontFamily: "Conneqt, sans-serif", fontWeight: 700}}>Studio</p>
+            <p className="text-[15px] text-[#242020] leading-[1.5] whitespace-pre-line">{"MANIAZAMANI FINE JEWELRY\n505 Greenwich Street\nSuite 2F, New York\n+1 646 685 4584"}</p>
+          </div>
 
-        <div className="flex-1 flex flex-col gap-5">
-          <p className="text-[14px] uppercase text-[#242020] leading-none" style={{fontFamily: "Conneqt, sans-serif", fontWeight: 700}}>Sales</p>
-          <a
-            href="mailto:sales@maniazamani.com"
-            className="text-[12px] text-[#242020] hover:opacity-60 transition-opacity leading-[1.4]"
-          >
-            sales@maniazamani.com
-          </a>
-        </div>
-
-        <div className="flex-1 flex flex-col gap-5">
-          <p className="text-[14px] uppercase text-[#242020] leading-none" style={{fontFamily: "Conneqt, sans-serif", fontWeight: 700}}>Press</p>
-          <a
-            href="mailto:info@maniazamani.com"
-            className="text-[12px] text-[#242020] hover:opacity-60 transition-opacity leading-[1.4]"
-          >
-            info@maniazamani.com
-          </a>
-        </div>
-
-        <div className="flex-1 flex flex-col gap-5">
-          <p className="text-[14px] uppercase text-[#242020] leading-none" style={{fontFamily: "Conneqt, sans-serif", fontWeight: 700}}>Social</p>
-          <div className="flex flex-col gap-1">
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[12px] text-[#242020] hover:opacity-60 transition-opacity leading-[1.4]"
-            >
-              Facebook
+          <div className="flex flex-col gap-3">
+            <p className="text-[16px] uppercase text-[#242020] leading-none" style={{fontFamily: "Conneqt, sans-serif", fontWeight: 700}}>Sales</p>
+            <a href="mailto:sales@maniazamani.com" className="text-[15px] text-[#242020] hover:opacity-60 transition-opacity leading-[1.5] break-all">
+              sales@maniazamani.com
             </a>
-            <a
-              href="https://instagram.com/studiozamani"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[12px] text-[#242020] hover:opacity-60 transition-opacity leading-[1.4]"
-            >
-              Instagram
+          </div>
+
+          <div className="flex flex-col gap-3">
+            <p className="text-[16px] uppercase text-[#242020] leading-none" style={{fontFamily: "Conneqt, sans-serif", fontWeight: 700}}>Press</p>
+            <a href="mailto:info@maniazamani.com" className="text-[15px] text-[#242020] hover:opacity-60 transition-opacity leading-[1.5] break-all">
+              info@maniazamani.com
             </a>
+          </div>
+
+          <div className="flex flex-col gap-3">
+            <p className="text-[16px] uppercase text-[#242020] leading-none" style={{fontFamily: "Conneqt, sans-serif", fontWeight: 700}}>Social</p>
+            <div className="flex flex-col gap-1">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-[15px] text-[#242020] hover:opacity-60 transition-opacity leading-[1.5]">Facebook</a>
+              <a href="https://instagram.com/studiozamani" target="_blank" rel="noopener noreferrer" className="text-[15px] text-[#242020] hover:opacity-60 transition-opacity leading-[1.5]">Instagram</a>
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop: 4-column row */}
+        <div className="hidden md:flex gap-[44px] px-10 py-10">
+          <div className="flex-1 flex flex-col gap-5">
+            <p className="text-[16px] uppercase text-[#242020] leading-none" style={{fontFamily: "Conneqt, sans-serif", fontWeight: 700}}>Studio</p>
+            <p className="text-[12px] text-[#242020] leading-[1.4] whitespace-pre-line">{"MANIAZAMANI FINE JEWELRY 505\nGreenwich Street, Suite 2F New York\n+1 646 685 4584"}</p>
+          </div>
+          <div className="flex-1 flex flex-col gap-5">
+            <p className="text-[16px] uppercase text-[#242020] leading-none" style={{fontFamily: "Conneqt, sans-serif", fontWeight: 700}}>Sales</p>
+            <a href="mailto:sales@maniazamani.com" className="text-[12px] text-[#242020] hover:opacity-60 transition-opacity leading-[1.4]">sales@maniazamani.com</a>
+          </div>
+          <div className="flex-1 flex flex-col gap-5">
+            <p className="text-[16px] uppercase text-[#242020] leading-none" style={{fontFamily: "Conneqt, sans-serif", fontWeight: 700}}>Press</p>
+            <a href="mailto:info@maniazamani.com" className="text-[12px] text-[#242020] hover:opacity-60 transition-opacity leading-[1.4]">info@maniazamani.com</a>
+          </div>
+          <div className="flex-1 flex flex-col gap-5">
+            <p className="text-[16px] uppercase text-[#242020] leading-none" style={{fontFamily: "Conneqt, sans-serif", fontWeight: 700}}>Social</p>
+            <div className="flex flex-col gap-1">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-[12px] text-[#242020] hover:opacity-60 transition-opacity leading-[1.4]">Facebook</a>
+              <a href="https://instagram.com/studiozamani" target="_blank" rel="noopener noreferrer" className="text-[12px] text-[#242020] hover:opacity-60 transition-opacity leading-[1.4]">Instagram</a>
+            </div>
           </div>
         </div>
       </div>
