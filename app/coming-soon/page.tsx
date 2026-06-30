@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function ComingSoonPage() {
   return (
     <div
-      className="min-h-screen flex flex-col items-center justify-center gap-6"
+      className="min-h-screen flex flex-col items-center justify-center gap-6 text-center px-6"
       style={{ backgroundColor: "#0d0d0d" }}
     >
       <Image
