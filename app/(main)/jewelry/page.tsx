@@ -1,4 +1,4 @@
-import { JewelryGallery } from "../components/JewelryGallery";
+import { JewelryGallery } from "../../components/JewelryGallery";
 
 export default function JewelryPage() {
   return (

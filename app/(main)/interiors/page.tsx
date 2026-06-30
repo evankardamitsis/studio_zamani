@@ -1,4 +1,4 @@
-import { PlaceholderImage } from "../components/PlaceholderImage";
+import { PlaceholderImage } from "../../components/PlaceholderImage";
 
 type GalleryImage = { src: string; alt: string; aspectRatio: string };
 
