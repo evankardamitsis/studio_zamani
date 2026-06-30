@@ -2,12 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #0a0a0a;
-  --foreground: #f5f5f5;
+@font-face {
+  font-family: "Conneqt";
+  src: url("/fonts/Conneqt Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
 }
 
+@font-face {
+  font-family: "Conneqt";
+  src: url("/fonts/Conneqt Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Conneqt";
+  src: url("/fonts/Conneqt Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+:root {
+  --sidebar-width: 130px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
 body {
-  color: var(--foreground);
-  background: var(--background);
+  margin: 0;
+  padding: 0;
+  background-color: #f6f8f8;
+  color: #1a1a1a;
+}
+
+/* Hide scrollbar in carousel */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
