@@ -2,9 +2,9 @@ import { PlaceholderImage } from "../../components/PlaceholderImage";
 
 export default function StudioPage() {
   return (
-    <div className="min-h-screen bg-[#f6f8f8] flex flex-col md:flex-row">
+    <div className="min-h-screen bg-[#f8f6ed] flex flex-col lg:flex-row">
       {/* Image */}
-      <div className="w-full h-[75vw] md:w-[40%] md:h-screen overflow-hidden bg-[#f6f8f8] p-6 md:p-10">
+      <div className="w-full h-[105vw] lg:w-[40%] lg:h-screen overflow-hidden bg-[#f8f6ed] p-6 lg:p-10">
         <div className="relative w-full h-full">
           <PlaceholderImage
             src="/images/interior/038ManiaLondon.avif"
@@ -17,7 +17,7 @@ export default function StudioPage() {
       </div>
 
       {/* Bio text */}
-      <div className="w-full md:w-[60%] flex flex-col justify-end px-6 pb-12 pt-8 md:px-14 md:pb-16 md:pt-24">
+      <div className="w-full lg:w-[60%] flex flex-col justify-end px-6 pb-12 pt-8 lg:px-14 lg:pb-16 lg:pt-24">
         <p className="text-[13px] uppercase tracking-[0.12em] leading-snug mb-8 max-w-[680px]" style={{fontFamily: "Conneqt, sans-serif", fontWeight: 700}}>
           Mania Zamani is the exquisite result of one woman&apos;s life
           journey. An odyssey that took her from her native Tehran to New York,

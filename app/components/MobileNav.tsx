@@ -30,10 +30,10 @@ export function MobileNav() {
     <>
       {/* Top bar */}
       <header
-        className="fixed top-0 left-0 right-0 z-30 flex items-center justify-between px-5 md:hidden"
-        style={{ height: 56, background: "rgba(246,248,248,0.15)", backdropFilter: "blur(6px)", WebkitBackdropFilter: "blur(6px)" }}
+        className="fixed top-0 left-0 right-0 z-30 flex items-center justify-between px-5 lg:hidden"
+        style={{ height: 56, background: "rgba(248,246,237,0.15)", backdropFilter: "blur(6px)", WebkitBackdropFilter: "blur(6px)" }}
       >
-        <Link href="/">
+        <Link href="/interiors">
           <Image src="/studio-zamani-logo.svg" alt="Studio Zamani" width={66} height={26} priority className="w-[66px] h-auto" />
         </Link>
 
@@ -50,15 +50,15 @@ export function MobileNav() {
 
       {/* Full-screen overlay */}
       <div
-        className={`fixed inset-0 z-20 flex flex-col justify-center px-10 md:hidden transition-opacity duration-300 ${open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
-        style={{ background: "#f6f8f8" }}
+        className={`fixed inset-0 z-20 flex flex-col justify-center px-10 lg:hidden transition-opacity duration-300 ${open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+        style={{ background: "#f8f6ed" }}
       >
         <nav className="flex flex-col gap-8 mt-8">
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className={`text-[32px] leading-none text-[#242020] tracking-tight hover:opacity-40 transition-opacity ${pathname === item.href || (item.href === "/jewelry" && pathname === "/") ? "font-semibold" : "font-normal"}`}
+              className={`text-[32px] leading-none text-[#242020] tracking-tight hover:opacity-40 transition-opacity ${pathname === item.href || (item.href === "/interiors" && pathname === "/") ? "font-semibold" : "font-normal"}`}
             >
               {item.label}
             </Link>

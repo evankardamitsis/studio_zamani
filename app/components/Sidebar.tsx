@@ -16,23 +16,23 @@ export function Sidebar() {
   const pathname = usePathname();
 
   const isActive = (href: string) => {
-    if (href === "/jewelry" && pathname === "/") return true;
+    if (href === "/interiors" && pathname === "/") return true;
     return pathname === href;
   };
 
   return (
     <aside
-      className="hidden md:flex fixed top-0 left-0 h-screen flex-col z-20"
+      className="hidden lg:flex fixed top-0 left-0 h-screen flex-col z-20"
       style={{
         width: "166px",
         padding: "40px",
-        background: "rgba(246,248,248,0.15)",
+        background: "rgba(248,246,237,0.15)",
         backdropFilter: "blur(6px)",
         WebkitBackdropFilter: "blur(6px)",
       }}
     >
       {/* Logo */}
-      <Link href="/" className="block mb-[30px]">
+      <Link href="/interiors" className="block mb-[30px]">
         <Image
           src="/studio-zamani-logo.svg"
           alt="Studio Zamani"
