@@ -9,6 +9,7 @@ const navItems = [
   { label: "Interiors", href: "/interiors" },
   { label: "Jewelry", href: "/jewelry" },
   { label: "Studio", href: "/studio" },
+  { label: "Advisory", href: "/advisory" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -30,7 +31,7 @@ export function MobileNav() {
       {/* Top bar */}
       <header
         className="fixed top-0 left-0 right-0 z-30 flex items-center justify-between px-5 md:hidden"
-        style={{ height: 56, background: "rgba(246,248,248,0.92)", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)" }}
+        style={{ height: 56, background: "rgba(246,248,248,0.15)", backdropFilter: "blur(6px)", WebkitBackdropFilter: "blur(6px)" }}
       >
         <Link href="/">
           <Image src="/studio-zamani-logo.svg" alt="Studio Zamani" width={66} height={26} priority className="w-[66px] h-auto" />

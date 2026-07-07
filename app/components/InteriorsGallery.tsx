@@ -3,26 +3,25 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
 
-const images = [
-  { src: "/images/Mania_1.avif", alt: "Studio Zamani jewelry" },
-  { src: "/images/Mania_2.avif", alt: "Studio Zamani jewelry" },
-  { src: "/images/Mania_3.avif", alt: "Studio Zamani jewelry" },
-  { src: "/images/Mania_4.avif", alt: "Studio Zamani jewelry" },
-  { src: "/images/Mania_5.avif", alt: "Studio Zamani jewelry" },
-  { src: "/images/Mania_8.avif", alt: "Studio Zamani jewelry" },
-  { src: "/images/Mania_9.avif", alt: "Studio Zamani jewelry" },
-  { src: "/images/Mania_12.avif", alt: "Studio Zamani jewelry" },
-  { src: "/images/Mania_14.avif", alt: "Studio Zamani jewelry" },
-];
+const TOTAL = 40;
+const images = Array.from({ length: TOTAL }, (_, i) => {
+  const n = String(i + 1).padStart(3, "0");
+  return { src: `/images/interior/${n}ManiaLondon.avif`, alt: "Studio Zamani interiors" };
+});
 
-const OFFSETS = [0, 145, 30];
-const GAP = 24;
+const GAP = 4;
 const SIDEBAR = 166;
+const PEEK = 72;
+const MIN_SLOT_WIDTH = `calc(100vw - ${SIDEBAR}px - ${PEEK}px)`;
 
-export function JewelryGallery() {
+const AUTOPLAY_MS = 5000;
+
+export function InteriorsGallery() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [current, setCurrent] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const hovering = useRef(false);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -31,9 +30,22 @@ export function JewelryGallery() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  const colWidth = isMobile
-    ? `calc(100vw - 40px)`
-    : `calc(100vw / 3 - ${GAP}px)`;
+  // Each slide is sized to its own image's natural aspect ratio, so paging
+  // targets are computed from measured DOM offsets rather than a fixed step —
+  // this keeps every settled slide's left edge flush against the sidebar,
+  // whatever its width. The scroller itself is confined to the area right of
+  // the sidebar (no bleed-under trick), so nothing ever renders behind it,
+  // even mid-scroll.
+  const getSlideEls = () => (scrollRef.current ? (Array.from(scrollRef.current.children) as HTMLDivElement[]) : []);
+
+  const goTo = useCallback((idx: number) => {
+    const slides = getSlideEls();
+    if (!scrollRef.current || slides.length === 0) return;
+    const clamped = Math.min(slides.length - 1, Math.max(0, idx));
+    const target = slides[clamped].offsetLeft;
+    scrollRef.current.scrollTo({ left: target, behavior: "smooth" });
+    setCurrent(clamped);
+  }, []);
 
   // ── Drag-to-scroll ────────────────────────────────────────────────────────
   const dragging = useRef(false);
@@ -57,14 +69,45 @@ export function JewelryGallery() {
     scrollRef.current.scrollLeft = scrollStart.current - dx;
   };
 
-  const onPointerUp = () => { dragging.current = false; };
+  // ── Settle to nearest slide (after drag or trackpad scroll) ────────────────
+  const settle = useCallback(() => {
+    if (!scrollRef.current) return;
+    const scrollLeft = scrollRef.current.scrollLeft;
+    const slides = getSlideEls();
+    let nearest = 0;
+    let nearestDist = Infinity;
+    slides.forEach((el, i) => {
+      const dist = Math.abs(el.offsetLeft - scrollLeft);
+      if (dist < nearestDist) { nearestDist = dist; nearest = i; }
+    });
+    goTo(nearest);
+  }, [goTo]);
+
+  const onPointerUp = () => {
+    dragging.current = false;
+    settle();
+  };
+
+  const scrollTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const onScroll = () => {
+    if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+    scrollTimeout.current = setTimeout(() => {
+      if (!dragging.current) settle();
+    }, 150);
+  };
 
   // ── Arrow navigation ──────────────────────────────────────────────────────
-  const scroll = (dir: "left" | "right") => {
-    if (!scrollRef.current) return;
-    const step = isMobile ? window.innerWidth - 40 : window.innerWidth / 3;
-    scrollRef.current.scrollBy({ left: dir === "left" ? -step : step, behavior: "smooth" });
-  };
+  const scroll = (dir: "left" | "right") => goTo(current + (dir === "left" ? -1 : 1));
+
+  // ── Autoplay ─────────────────────────────────────────────────────────────
+  useEffect(() => {
+    if (isMobile || lightboxIndex !== null) return;
+    const id = setInterval(() => {
+      if (dragging.current || hovering.current) return;
+      goTo((current + 1) % images.length);
+    }, AUTOPLAY_MS);
+    return () => clearInterval(id);
+  }, [isMobile, lightboxIndex, current, goTo]);
 
   // ── Lightbox keyboard ─────────────────────────────────────────────────────
   const closeLightbox = useCallback(() => setLightboxIndex(null), []);
@@ -101,7 +144,7 @@ export function JewelryGallery() {
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0d0d0d]/95" onClick={closeLightbox}>
             <button onClick={closeLightbox} aria-label="Close" className="absolute top-7 right-6 text-white/50 hover:text-white text-2xl leading-none transition-colors">×</button>
             <div className="max-h-[88vh] max-w-[90vw] flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
-              <Image src={images[lightboxIndex].src} alt={images[lightboxIndex].alt} width={1200} height={1600} className="max-h-[88vh] w-auto object-contain" priority />
+              <Image src={images[lightboxIndex].src} alt={images[lightboxIndex].alt} width={1600} height={1600} className="max-h-[88vh] w-auto object-contain" priority />
             </div>
             {lightboxIndex > 0 && <button onClick={(e) => { e.stopPropagation(); prevImage(); }} aria-label="Previous image" className="absolute left-4 top-1/2 -translate-y-1/2 text-white/50 hover:text-white text-2xl transition-colors px-2 py-4">←</button>}
             {lightboxIndex < images.length - 1 && <button onClick={(e) => { e.stopPropagation(); nextImage(); }} aria-label="Next image" className="absolute right-4 top-1/2 -translate-y-1/2 text-white/50 hover:text-white text-2xl transition-colors px-2 py-4">→</button>}
@@ -114,10 +157,11 @@ export function JewelryGallery() {
 
   return (
     <>
-      {/* ── Desktop Carousel ──────────────────────────────────────────────── */}
+      {/* ── Desktop: full-height, right-running horizontal carousel ─────────── */}
       <div
         className="relative h-screen overflow-hidden"
-        style={{ marginLeft: -SIDEBAR, width: "100vw" }}
+        onMouseEnter={() => { hovering.current = true; }}
+        onMouseLeave={() => { hovering.current = false; }}
       >
         <div
           ref={scrollRef}
@@ -126,22 +170,22 @@ export function JewelryGallery() {
             scrollbarWidth: "none",
             gap: GAP,
             cursor: "grab",
-            paddingLeft: SIDEBAR,
           }}
           onPointerDown={onPointerDown}
           onPointerMove={onPointerMove}
           onPointerUp={onPointerUp}
           onPointerCancel={onPointerUp}
+          onScroll={onScroll}
         >
           {images.map((img, i) => (
             <div
               key={i}
-              className="flex-shrink-0 select-none"
-              style={{ width: colWidth, marginTop: OFFSETS[i % 3] }}
+              className="flex-shrink-0 h-full select-none flex justify-end"
+              style={{ minWidth: MIN_SLOT_WIDTH }}
               onClick={() => { if (!didDrag.current) setLightboxIndex(i); }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={img.src} alt={img.alt} className="w-full h-auto object-cover pointer-events-none" draggable={false} />
+              <img src={img.src} alt={img.alt} className="h-full w-auto object-cover pointer-events-none" draggable={false} />
             </div>
           ))}
         </div>
@@ -150,7 +194,7 @@ export function JewelryGallery() {
           onClick={() => scroll("left")}
           aria-label="Previous"
           className="absolute top-1/2 -translate-y-1/2 flex items-center justify-center w-11 h-11 rounded-full text-white select-none transition-colors"
-          style={{ left: SIDEBAR + 16, background: "rgba(13,13,13,0.35)", backdropFilter: "blur(6px)", WebkitBackdropFilter: "blur(6px)" }}
+          style={{ left: 16, background: "rgba(13,13,13,0.35)", backdropFilter: "blur(6px)", WebkitBackdropFilter: "blur(6px)" }}
           onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(13,13,13,0.6)"; }}
           onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(13,13,13,0.35)"; }}
         >
@@ -189,7 +233,7 @@ export function JewelryGallery() {
             <Image
               src={images[lightboxIndex].src}
               alt={images[lightboxIndex].alt}
-              width={1200}
+              width={1600}
               height={1600}
               className="max-h-[88vh] w-auto object-contain"
               priority
