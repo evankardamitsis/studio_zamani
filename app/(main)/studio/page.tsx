@@ -4,20 +4,20 @@ export default function StudioPage() {
   return (
     <div className="min-h-screen bg-[#f8f6ed] flex flex-col lg:flex-row">
       {/* Image */}
-      <div className="w-full h-[105vw] lg:w-[40%] lg:h-screen overflow-hidden bg-[#f8f6ed] p-6 lg:p-10">
+      <div className="w-full h-[105vw] lg:w-1/2 lg:h-screen overflow-hidden bg-[#f8f6ed] p-6 lg:p-10">
         <div className="relative w-full h-full">
           <PlaceholderImage
             src="/images/interior/038ManiaLondon.avif"
             alt="Mania Zamani, founder of Studio Zamani"
             fill
             className="object-cover"
-            sizes="(max-width: 768px) 100vw, 40vw"
+            sizes="(max-width: 768px) 100vw, 50vw"
           />
         </div>
       </div>
 
       {/* Bio text */}
-      <div className="w-full lg:w-[60%] flex flex-col justify-end px-6 pb-12 pt-8 lg:px-14 lg:pb-16 lg:pt-24">
+      <div className="w-full lg:w-1/2 flex flex-col justify-end px-6 pb-12 pt-8 lg:px-14 lg:pb-16 lg:pt-24">
         <p className="text-[13px] uppercase tracking-[0.12em] leading-snug mb-8 max-w-[680px]" style={{fontFamily: "Conneqt, sans-serif", fontWeight: 700}}>
           Mania Zamani is the exquisite result of one woman&apos;s life
           journey. An odyssey that took her from her native Tehran to New York,

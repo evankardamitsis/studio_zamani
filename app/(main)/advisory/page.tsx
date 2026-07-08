@@ -4,20 +4,20 @@ export default function AdvisoryPage() {
   return (
     <div className="lg:h-screen lg:overflow-hidden bg-[#f8f6ed] flex flex-col lg:flex-row">
       {/* Image */}
-      <div className="w-full h-[105vw] lg:w-[40%] lg:h-screen overflow-hidden bg-[#f8f6ed] p-6 lg:p-10">
+      <div className="w-full h-[105vw] lg:w-1/2 lg:h-screen overflow-hidden bg-[#f8f6ed] p-6 lg:p-10">
         <div className="relative w-full h-full">
           <PlaceholderImage
             src="/images/interior/022ManiaLondon.avif"
             alt="Studio Zamani, collectible design advisory"
             fill
             className="object-cover"
-            sizes="(max-width: 768px) 100vw, 40vw"
+            sizes="(max-width: 768px) 100vw, 50vw"
           />
         </div>
       </div>
 
       {/* Copy */}
-      <div className="w-full lg:w-[60%] lg:h-screen flex flex-col justify-end px-6 py-8 lg:px-14">
+      <div className="w-full lg:w-1/2 lg:h-screen flex flex-col justify-end px-6 py-8 lg:px-14">
         <p className="text-[13px] uppercase tracking-[0.08em] leading-none mb-4" style={{fontFamily: "Conneqt, sans-serif", fontWeight: 700}}>
           Collectible Design Advisory
         </p>
