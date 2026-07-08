@@ -10,7 +10,7 @@ export default function StudioPage() {
             src="/images/interior/038ManiaLondon.avif"
             alt="Mania Zamani, founder of Studio Zamani"
             fill
-            className="object-contain"
+            className="object-cover"
             sizes="(max-width: 768px) 100vw, 40vw"
           />
         </div>

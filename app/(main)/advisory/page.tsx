@@ -10,7 +10,7 @@ export default function AdvisoryPage() {
             src="/images/interior/022ManiaLondon.avif"
             alt="Studio Zamani, collectible design advisory"
             fill
-            className="object-contain"
+            className="object-cover"
             sizes="(max-width: 768px) 100vw, 40vw"
           />
         </div>
