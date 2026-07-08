@@ -122,7 +122,7 @@ export function JewelryGallery() {
       {/* ── Desktop Carousel ──────────────────────────────────────────────── */}
       <div
         ref={containerRef}
-        className="relative h-full overflow-hidden"
+        className="relative h-full overflow-hidden cursor-none"
         style={{ marginLeft: -SIDEBAR, width: "100vw" }}
         onMouseEnter={() => setShowCursorArrow(true)}
         onMouseLeave={() => setShowCursorArrow(false)}
@@ -151,7 +151,6 @@ export function JewelryGallery() {
           style={{
             scrollbarWidth: "none",
             gap: GAP,
-            cursor: "grab",
             paddingLeft: SIDEBAR,
           }}
           onPointerDown={onPointerDown}
@@ -185,7 +184,7 @@ export function JewelryGallery() {
               scroll(cursorDirection);
             }}
             aria-label={cursorDirection === "left" ? "Previous" : "Next"}
-            className="absolute z-30 flex h-20 w-20 items-center justify-center text-white mix-blend-difference pointer-events-auto"
+            className="absolute z-30 flex h-20 w-20 items-center justify-center text-white mix-blend-difference pointer-events-auto cursor-none"
             style={{
               left: cursorX,
               top: cursorY,

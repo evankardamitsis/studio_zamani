@@ -177,7 +177,7 @@ export function InteriorsGallery() {
       {/* ── Desktop: fade carousel ───────────────────────────────────────────── */}
       <div
         ref={containerRef}
-        className="group relative h-full overflow-hidden bg-[#f8f6ed]"
+        className="group relative h-full overflow-hidden bg-[#f8f6ed] cursor-none"
         onMouseEnter={() => {
           setIsHovering(true);
           setShowCursorArrow(true);
@@ -222,7 +222,7 @@ export function InteriorsGallery() {
 
         <button
           type="button"
-          className="absolute inset-0 z-20 cursor-zoom-in"
+          className="absolute inset-0 z-20 cursor-none"
           aria-label="Open image"
           onClick={() => setLightboxIndex(visibleIndex)}
         />
@@ -248,7 +248,7 @@ export function InteriorsGallery() {
               navigateDesktop(cursorDirection);
             }}
             aria-label={cursorDirection === "left" ? "Previous" : "Next"}
-            className="absolute z-30 flex h-20 w-20 items-center justify-center text-white mix-blend-difference pointer-events-auto"
+            className="absolute z-30 flex h-20 w-20 items-center justify-center text-white mix-blend-difference pointer-events-auto cursor-none"
             style={{
               left: cursorX,
               top: cursorY,

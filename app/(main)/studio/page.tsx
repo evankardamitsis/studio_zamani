@@ -2,7 +2,7 @@ import { PlaceholderImage } from "../../components/PlaceholderImage";
 
 export default function StudioPage() {
   return (
-    <div className="min-h-screen bg-[#f8f6ed] flex flex-col lg:flex-row">
+    <div className="min-h-screen bg-[#f8f6ed] flex flex-col lg:flex-row cursor-default">
       {/* Image */}
       <div className="w-full h-[105vw] lg:w-1/2 lg:h-screen overflow-hidden bg-[#f8f6ed] p-6 lg:p-10">
         <div className="relative w-full h-full">
