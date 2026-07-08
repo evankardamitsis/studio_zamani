@@ -9,110 +9,102 @@ const images = Array.from({ length: TOTAL }, (_, i) => {
   return { src: `/images/interior/${n}ManiaLondon.avif`, alt: "Studio Zamani interiors" };
 });
 
-const GAP = 4;
-const SIDEBAR = 166;
-const PEEK = 72;
-const MIN_SLOT_WIDTH = `calc(100vw - ${SIDEBAR}px - ${PEEK}px)`;
-
-const AUTOPLAY_MS = 5000;
-
 export function InteriorsGallery() {
+  const AUTOPLAY_MS = 5000;
+  const FADE_MS = 700;
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState(false);
-  const [current, setCurrent] = useState(0);
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const hovering = useRef(false);
-
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 1024);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
-
-  // Each slide is sized to its own image's natural aspect ratio, so paging
-  // targets are computed from measured DOM offsets rather than a fixed step —
-  // this keeps every settled slide's left edge flush against the sidebar,
-  // whatever its width. The scroller itself is confined to the area right of
-  // the sidebar (no bleed-under trick), so nothing ever renders behind it,
-  // even mid-scroll.
-  const getSlideEls = () => (scrollRef.current ? (Array.from(scrollRef.current.children) as HTMLDivElement[]) : []);
-
-  const goTo = useCallback((idx: number) => {
-    const slides = getSlideEls();
-    if (!scrollRef.current || slides.length === 0) return;
-    const clamped = Math.min(slides.length - 1, Math.max(0, idx));
-    const target = slides[clamped].offsetLeft;
-    scrollRef.current.scrollTo({ left: target, behavior: "smooth" });
-    setCurrent(clamped);
-  }, []);
-
-  // ── Drag-to-scroll ────────────────────────────────────────────────────────
-  const dragging = useRef(false);
-  const didDrag = useRef(false);
-  const startX = useRef(0);
-  const scrollStart = useRef(0);
-
-  const onPointerDown = (e: React.PointerEvent) => {
-    if (!scrollRef.current) return;
-    dragging.current = true;
-    didDrag.current = false;
-    startX.current = e.clientX;
-    scrollStart.current = scrollRef.current.scrollLeft;
-    scrollRef.current.setPointerCapture(e.pointerId);
-  };
-
-  const onPointerMove = (e: React.PointerEvent) => {
-    if (!dragging.current || !scrollRef.current) return;
-    const dx = e.clientX - startX.current;
-    if (Math.abs(dx) > 4) didDrag.current = true;
-    scrollRef.current.scrollLeft = scrollStart.current - dx;
-  };
-
-  // ── Settle to nearest slide (after drag or trackpad scroll) ────────────────
-  const settle = useCallback(() => {
-    if (!scrollRef.current) return;
-    const scrollLeft = scrollRef.current.scrollLeft;
-    const slides = getSlideEls();
-    let nearest = 0;
-    let nearestDist = Infinity;
-    slides.forEach((el, i) => {
-      const dist = Math.abs(el.offsetLeft - scrollLeft);
-      if (dist < nearestDist) { nearestDist = dist; nearest = i; }
-    });
-    goTo(nearest);
-  }, [goTo]);
-
-  const onPointerUp = () => {
-    dragging.current = false;
-    settle();
-  };
-
-  const scrollTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const onScroll = () => {
-    if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
-    scrollTimeout.current = setTimeout(() => {
-      if (!dragging.current) settle();
-    }, 150);
-  };
-
-  // ── Arrow navigation ──────────────────────────────────────────────────────
-  const scroll = (dir: "left" | "right") => goTo(current + (dir === "left" ? -1 : 1));
-
-  // ── Autoplay ─────────────────────────────────────────────────────────────
-  useEffect(() => {
-    if (isMobile || lightboxIndex !== null) return;
-    const id = setInterval(() => {
-      if (dragging.current || hovering.current) return;
-      goTo((current + 1) % images.length);
-    }, AUTOPLAY_MS);
-    return () => clearInterval(id);
-  }, [isMobile, lightboxIndex, current, goTo]);
+  const [layer0Index, setLayer0Index] = useState(0);
+  const [layer1Index, setLayer1Index] = useState(0);
+  const [layer0Opacity, setLayer0Opacity] = useState(1);
+  const [layer1Opacity, setLayer1Opacity] = useState(0);
+  const [activeLayer, setActiveLayer] = useState<0 | 1>(0);
+  const [isHovering, setIsHovering] = useState(false);
+  const [showCursorArrow, setShowCursorArrow] = useState(false);
+  const [cursorX, setCursorX] = useState(0);
+  const [cursorY, setCursorY] = useState(0);
+  const [cursorDirection, setCursorDirection] = useState<"left" | "right">("right");
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const transitionTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const fadeStartFrameRef = useRef<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const wheelCooldownRef = useRef(false);
+  const loadedImagesRef = useRef<Set<number>>(new Set([0]));
+  const pendingTargetRef = useRef<number | null>(null);
+  const visibleIndex = activeLayer === 0 ? layer0Index : layer1Index;
 
   // ── Lightbox keyboard ─────────────────────────────────────────────────────
   const closeLightbox = useCallback(() => setLightboxIndex(null), []);
   const prevImage = useCallback(() => setLightboxIndex((i) => (i !== null && i > 0 ? i - 1 : i)), []);
   const nextImage = useCallback(() => setLightboxIndex((i) => (i !== null && i < images.length - 1 ? i + 1 : i)), []);
+
+  const startTransition = useCallback(
+    (next: number) => {
+      const targetLayer = activeLayer === 0 ? 1 : 0;
+      if (targetLayer === 0) {
+        setLayer0Index(next);
+        setLayer0Opacity(0);
+      } else {
+        setLayer1Index(next);
+        setLayer1Opacity(0);
+      }
+      setIsTransitioning(true);
+
+      if (fadeStartFrameRef.current) cancelAnimationFrame(fadeStartFrameRef.current);
+      fadeStartFrameRef.current = requestAnimationFrame(() => {
+        if (targetLayer === 0) {
+          setLayer0Opacity(1);
+          setLayer1Opacity(0);
+        } else {
+          setLayer1Opacity(1);
+          setLayer0Opacity(0);
+        }
+      });
+
+      if (transitionTimer.current) clearTimeout(transitionTimer.current);
+      transitionTimer.current = setTimeout(() => {
+        setActiveLayer(targetLayer);
+        setIsTransitioning(false);
+      }, FADE_MS);
+    },
+    [FADE_MS, activeLayer]
+  );
+
+  const goToImage = useCallback(
+    (index: number) => {
+      if (isTransitioning) return;
+      const next = (index + images.length) % images.length;
+      if (next === visibleIndex) return;
+
+      if (loadedImagesRef.current.has(next)) {
+        startTransition(next);
+        return;
+      }
+
+      pendingTargetRef.current = next;
+      const preload = new window.Image();
+      preload.src = images[next].src;
+      preload.onload = () => {
+        loadedImagesRef.current.add(next);
+        if (pendingTargetRef.current === next) {
+          startTransition(next);
+        }
+      };
+      preload.onerror = () => {
+        if (pendingTargetRef.current === next) {
+          startTransition(next);
+        }
+      };
+    },
+    [visibleIndex, isTransitioning, startTransition]
+  );
+
+  const navigateDesktop = useCallback(
+    (dir: "left" | "right") => {
+      goToImage(visibleIndex + (dir === "left" ? -1 : 1));
+    },
+    [visibleIndex, goToImage]
+  );
 
   useEffect(() => {
     if (lightboxIndex === null) return;
@@ -124,6 +116,31 @@ export function InteriorsGallery() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [lightboxIndex, closeLightbox, prevImage, nextImage]);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 1024);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile || lightboxIndex !== null || isHovering) return;
+
+    const intervalId = setInterval(() => {
+      goToImage(visibleIndex + 1);
+    }, AUTOPLAY_MS);
+
+    return () => clearInterval(intervalId);
+  }, [visibleIndex, goToImage, isHovering, isMobile, lightboxIndex]);
+
+  useEffect(() => {
+    return () => {
+      if (transitionTimer.current) clearTimeout(transitionTimer.current);
+      if (fadeStartFrameRef.current) cancelAnimationFrame(fadeStartFrameRef.current);
+      pendingTargetRef.current = null;
+    };
+  }, []);
 
   if (isMobile) {
     return (
@@ -157,59 +174,99 @@ export function InteriorsGallery() {
 
   return (
     <>
-      {/* ── Desktop: full-height, right-running horizontal carousel ─────────── */}
+      {/* ── Desktop: fade carousel ───────────────────────────────────────────── */}
       <div
-        className="relative h-screen overflow-hidden"
-        onMouseEnter={() => { hovering.current = true; }}
-        onMouseLeave={() => { hovering.current = false; }}
+        ref={containerRef}
+        className="group relative h-full overflow-hidden bg-[#f8f6ed]"
+        onMouseEnter={() => {
+          setIsHovering(true);
+          setShowCursorArrow(true);
+        }}
+        onMouseLeave={() => {
+          setIsHovering(false);
+          setShowCursorArrow(false);
+        }}
+        onMouseMove={(e) => {
+          if (!containerRef.current) return;
+          const rect = containerRef.current.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          setCursorX(x);
+          setCursorY(y);
+          setCursorDirection(x < rect.width / 2 ? "left" : "right");
+        }}
+        onWheel={(e) => {
+          e.preventDefault();
+          if (wheelCooldownRef.current || isTransitioning) return;
+          const primaryDelta = Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+          if (Math.abs(primaryDelta) < 4) return;
+          navigateDesktop(primaryDelta < 0 ? "left" : "right");
+          wheelCooldownRef.current = true;
+          window.setTimeout(() => {
+            wheelCooldownRef.current = false;
+          }, 220);
+        }}
       >
         <div
-          ref={scrollRef}
-          className="flex h-full overflow-x-auto scrollbar-hide touch-pan-x"
-          style={{
-            scrollbarWidth: "none",
-            gap: GAP,
-            cursor: "grab",
-          }}
-          onPointerDown={onPointerDown}
-          onPointerMove={onPointerMove}
-          onPointerUp={onPointerUp}
-          onPointerCancel={onPointerUp}
-          onScroll={onScroll}
+          className="absolute inset-0 z-0 flex items-center justify-end transition-opacity ease-in-out will-change-opacity"
+          style={{ opacity: layer0Opacity, transitionDuration: `${FADE_MS}ms` }}
         >
-          {images.map((img, i) => (
-            <div
-              key={i}
-              className="flex-shrink-0 h-full select-none flex justify-end"
-              style={{ minWidth: MIN_SLOT_WIDTH }}
-              onClick={() => { if (!didDrag.current) setLightboxIndex(i); }}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={img.src} alt={img.alt} className="h-full w-auto object-cover pointer-events-none" draggable={false} />
-            </div>
-          ))}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={images[layer0Index].src}
+            alt={images[layer0Index].alt}
+            className="max-h-full max-w-full h-auto w-auto object-contain"
+            draggable={false}
+          />
         </div>
 
         <button
-          onClick={() => scroll("left")}
-          aria-label="Previous"
-          className="absolute top-1/2 -translate-y-1/2 flex items-center justify-center w-11 h-11 rounded-full text-white select-none transition-colors"
-          style={{ left: 16, background: "rgba(13,13,13,0.35)", backdropFilter: "blur(6px)", WebkitBackdropFilter: "blur(6px)" }}
-          onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(13,13,13,0.6)"; }}
-          onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(13,13,13,0.35)"; }}
+          type="button"
+          className="absolute inset-0 z-20 cursor-zoom-in"
+          aria-label="Open image"
+          onClick={() => setLightboxIndex(visibleIndex)}
+        />
+
+        <div
+          className="absolute inset-0 z-10 flex items-center justify-end transition-opacity ease-in-out will-change-opacity"
+          style={{ opacity: layer1Opacity, transitionDuration: `${FADE_MS}ms` }}
         >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-        </button>
-        <button
-          onClick={() => scroll("right")}
-          aria-label="Next"
-          className="absolute right-5 top-1/2 -translate-y-1/2 flex items-center justify-center w-11 h-11 rounded-full text-white select-none transition-colors"
-          style={{ background: "rgba(13,13,13,0.35)", backdropFilter: "blur(6px)", WebkitBackdropFilter: "blur(6px)" }}
-          onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(13,13,13,0.6)"; }}
-          onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(13,13,13,0.35)"; }}
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 6L15 12L9 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-        </button>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={images[layer1Index].src}
+            alt={images[layer1Index].alt}
+            className="max-h-full max-w-full h-auto w-auto object-contain"
+            draggable={false}
+          />
+        </div>
+
+        {showCursorArrow && (
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              navigateDesktop(cursorDirection);
+            }}
+            aria-label={cursorDirection === "left" ? "Previous" : "Next"}
+            className="absolute z-30 flex h-20 w-20 items-center justify-center text-white mix-blend-difference pointer-events-auto"
+            style={{
+              left: cursorX,
+              top: cursorY,
+              transform: "translate(-50%, -50%)",
+            }}
+            disabled={isTransitioning}
+          >
+            {cursorDirection === "left" ? (
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
+                <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            ) : (
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
+                <path d="M9 6L15 12L9 18" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            )}
+          </button>
+        )}
       </div>
 
       {/* ── Lightbox ─────────────────────────────────────────────────────── */}

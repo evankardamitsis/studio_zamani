@@ -22,7 +22,12 @@ const SIDEBAR = 166;
 export function JewelryGallery() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [showCursorArrow, setShowCursorArrow] = useState(false);
+  const [cursorX, setCursorX] = useState(0);
+  const [cursorY, setCursorY] = useState(0);
+  const [cursorDirection, setCursorDirection] = useState<"left" | "right">("right");
   const scrollRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 1024);
@@ -116,8 +121,29 @@ export function JewelryGallery() {
     <>
       {/* ── Desktop Carousel ──────────────────────────────────────────────── */}
       <div
-        className="relative h-screen overflow-hidden"
+        ref={containerRef}
+        className="relative h-full overflow-hidden"
         style={{ marginLeft: -SIDEBAR, width: "100vw" }}
+        onMouseEnter={() => setShowCursorArrow(true)}
+        onMouseLeave={() => setShowCursorArrow(false)}
+        onMouseMove={(e) => {
+          if (!containerRef.current) return;
+          const rect = containerRef.current.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          setCursorX(x);
+          setCursorY(y);
+          setCursorDirection(x < rect.width / 2 ? "left" : "right");
+        }}
+        onWheel={(e) => {
+          e.preventDefault();
+          if (!scrollRef.current) return;
+          const primaryDelta = Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+          scrollRef.current.scrollBy({
+            left: primaryDelta,
+            behavior: "smooth",
+          });
+        }}
       >
         <div
           ref={scrollRef}
@@ -141,31 +167,42 @@ export function JewelryGallery() {
               onClick={() => { if (!didDrag.current) setLightboxIndex(i); }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={img.src} alt={img.alt} className="w-full h-auto object-cover pointer-events-none" draggable={false} />
+              <img
+                src={img.src}
+                alt={img.alt}
+                className="w-full h-auto object-cover pointer-events-none lg:max-h-[calc(100vh-260px)]"
+                draggable={false}
+              />
             </div>
           ))}
         </div>
 
-        <button
-          onClick={() => scroll("left")}
-          aria-label="Previous"
-          className="absolute top-1/2 -translate-y-1/2 flex items-center justify-center w-11 h-11 rounded-full text-white select-none transition-colors"
-          style={{ left: SIDEBAR + 16, background: "rgba(13,13,13,0.35)", backdropFilter: "blur(6px)", WebkitBackdropFilter: "blur(6px)" }}
-          onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(13,13,13,0.6)"; }}
-          onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(13,13,13,0.35)"; }}
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-        </button>
-        <button
-          onClick={() => scroll("right")}
-          aria-label="Next"
-          className="absolute right-5 top-1/2 -translate-y-1/2 flex items-center justify-center w-11 h-11 rounded-full text-white select-none transition-colors"
-          style={{ background: "rgba(13,13,13,0.35)", backdropFilter: "blur(6px)", WebkitBackdropFilter: "blur(6px)" }}
-          onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(13,13,13,0.6)"; }}
-          onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(13,13,13,0.35)"; }}
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 6L15 12L9 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-        </button>
+        {showCursorArrow && (
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              scroll(cursorDirection);
+            }}
+            aria-label={cursorDirection === "left" ? "Previous" : "Next"}
+            className="absolute z-30 flex h-20 w-20 items-center justify-center text-white mix-blend-difference pointer-events-auto"
+            style={{
+              left: cursorX,
+              top: cursorY,
+              transform: "translate(-50%, -50%)",
+            }}
+          >
+            {cursorDirection === "left" ? (
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
+                <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            ) : (
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
+                <path d="M9 6L15 12L9 18" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            )}
+          </button>
+        )}
       </div>
 
       {/* ── Lightbox ─────────────────────────────────────────────────────── */}

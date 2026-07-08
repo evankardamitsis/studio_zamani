@@ -17,7 +17,7 @@ export default function AdvisoryPage() {
       </div>
 
       {/* Copy */}
-      <div className="w-full lg:w-1/2 lg:h-screen flex flex-col justify-end px-6 py-8 lg:px-14">
+      <div className="w-full lg:w-1/2 lg:h-screen flex flex-col justify-end px-6 py-8 lg:px-10">
         <p className="text-[13px] uppercase tracking-[0.08em] leading-none mb-4" style={{fontFamily: "Conneqt, sans-serif", fontWeight: 700}}>
           Collectible Design Advisory
         </p>

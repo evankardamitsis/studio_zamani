@@ -17,7 +17,7 @@ export default function StudioPage() {
       </div>
 
       {/* Bio text */}
-      <div className="w-full lg:w-1/2 flex flex-col justify-end px-6 pb-12 pt-8 lg:px-14 lg:pb-16 lg:pt-24">
+      <div className="w-full lg:w-1/2 lg:h-screen flex flex-col justify-end px-6 pb-12 pt-8 lg:px-10 lg:pb-10 lg:pt-24">
         <p className="text-[13px] uppercase tracking-[0.12em] leading-snug mb-8 max-w-[680px]" style={{fontFamily: "Conneqt, sans-serif", fontWeight: 700}}>
           Mania Zamani is the exquisite result of one woman&apos;s life
           journey. An odyssey that took her from her native Tehran to New York,
