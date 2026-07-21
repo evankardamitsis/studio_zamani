@@ -13,10 +13,10 @@ export default function StudioPage() {
       {/* Full-width hero, no split screen — framed toward the top so her face stays in shot on wide screens */}
       <div className="relative w-full h-[70vh] lg:h-[75vh]">
         <PlaceholderImage
-          src="/images/interior/038ManiaLondon.avif"
+          src="/images/mania-portrait.avif"
           alt="Mania Zamani, founder of Studio Zamani"
           fill
-          className="object-cover object-[50%_18%]"
+          className="object-cover object-[50%_15%]"
           sizes="100vw"
         />
       </div>
