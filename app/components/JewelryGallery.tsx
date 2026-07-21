@@ -4,15 +4,14 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
 
 const images = [
-  { src: "/images/Mania_1.avif", alt: "Studio Zamani jewelry" },
-  { src: "/images/Mania_2.avif", alt: "Studio Zamani jewelry" },
-  { src: "/images/Mania_3.avif", alt: "Studio Zamani jewelry" },
-  { src: "/images/Mania_4.avif", alt: "Studio Zamani jewelry" },
-  { src: "/images/Mania_5.avif", alt: "Studio Zamani jewelry" },
-  { src: "/images/Mania_8.avif", alt: "Studio Zamani jewelry" },
-  { src: "/images/Mania_9.avif", alt: "Studio Zamani jewelry" },
-  { src: "/images/Mania_12.avif", alt: "Studio Zamani jewelry" },
-  { src: "/images/Mania_14.avif", alt: "Studio Zamani jewelry" },
+  { src: "/images/jewelry/jewelry-01.avif", alt: "Studio Zamani jewelry" },
+  { src: "/images/jewelry/jewelry-02.avif", alt: "Studio Zamani jewelry" },
+  { src: "/images/jewelry/jewelry-03.avif", alt: "Studio Zamani jewelry" },
+  { src: "/images/jewelry/jewelry-04.avif", alt: "Studio Zamani jewelry" },
+  { src: "/images/jewelry/jewelry-05.avif", alt: "Studio Zamani jewelry" },
+  { src: "/images/jewelry/jewelry-06.avif", alt: "Studio Zamani jewelry" },
+  { src: "/images/jewelry/jewelry-07.avif", alt: "Studio Zamani jewelry" },
+  { src: "/images/jewelry/jewelry-08.avif", alt: "Studio Zamani jewelry" },
 ];
 
 const OFFSETS = [0, 145, 30];
