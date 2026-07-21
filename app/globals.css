@@ -61,15 +61,24 @@ body {
 }
 
 .animate-fade-in {
-  animation: fade-in 0.9s ease both;
+  animation-name: fade-in;
+  animation-duration: 0.9s;
+  animation-timing-function: ease;
+  animation-fill-mode: both;
 }
 
 .animate-fade-up {
-  animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-name: fade-up;
+  animation-duration: 0.8s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  animation-fill-mode: both;
 }
 
 .animate-fade-scale-in {
-  animation: fade-scale-in 1.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-name: fade-scale-in;
+  animation-duration: 1.5s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  animation-fill-mode: both;
 }
 
 @media (prefers-reduced-motion: reduce) {

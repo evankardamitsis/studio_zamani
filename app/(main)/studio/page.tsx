@@ -11,7 +11,7 @@ export default function StudioPage() {
   return (
     <div className="bg-[#f8f6ed]">
       {/* Full-width hero, no split screen — framed toward the top so her face stays in shot on wide screens */}
-      <div className="relative w-full h-[70vh] lg:h-[75vh]">
+      <div className="relative w-full h-[70vh] lg:h-[75vh] animate-fade-scale-in">
         <PlaceholderImage
           src="/images/mania-portrait.avif"
           alt="Mania Zamani, founder of Studio Zamani"
@@ -23,16 +23,18 @@ export default function StudioPage() {
 
       {/* Headline runs full width beneath the image, magazine-style */}
       <div className="px-6 lg:px-10 pt-10 lg:pt-16">
-        <PageLabel index={4} label="Studio" />
+        <div className="animate-fade-up [animation-delay:100ms]">
+          <PageLabel index={4} label="Studio" />
+        </div>
         <h1
-          className="text-[11vw] lg:text-[6.4vw] leading-[0.92] tracking-[-0.01em] max-w-[1400px]"
+          className="text-[11vw] lg:text-[6.4vw] leading-[0.92] tracking-[-0.01em] max-w-[1400px] animate-fade-up [animation-delay:200ms]"
           style={{ fontFamily: "Conneqt, sans-serif", fontWeight: 900 }}
         >
           Studio Zamani
         </h1>
 
         {/* Intro column, offset to the right like a magazine dek */}
-        <div className="flex justify-end mt-8 lg:mt-10">
+        <div className="flex justify-end mt-8 lg:mt-10 animate-fade-up [animation-delay:320ms]">
           <p className="text-[15px] leading-relaxed max-w-[440px] text-[#1a1a1a]">
             Studio Zamani is a multidisciplinary design studio led by <strong>Mania
               Zamani,</strong> working across interior architecture, collectible design
@@ -42,7 +44,7 @@ export default function StudioPage() {
       </div>
 
       {/* Body copy in a two-column editorial grid */}
-      <div className="px-6 lg:px-10 py-16 lg:py-24 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 border-t border-[#1a1a1a]/10 mt-16">
+      <div className="px-6 lg:px-10 py-16 lg:py-24 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 border-t border-[#1a1a1a]/10 mt-16 animate-fade-up [animation-delay:420ms]">
         <p className="text-[15px] leading-relaxed text-[#1a1a1a]">
           Having studied interior architecture, jewelry design, and gemology,
           Mania approaches space through proportion, materiality, and detail.

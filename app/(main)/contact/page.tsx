@@ -5,7 +5,7 @@ export default function ContactPage() {
   return (
     <div className="flex flex-col min-h-screen bg-[#f8f6ed] lg:pt-10 lg:pr-10">
       {/* Full-bleed image */}
-      <div className="relative w-full h-[50vh] lg:h-[80vh]">
+      <div className="relative w-full h-[50vh] lg:h-[80vh] animate-fade-scale-in">
         <Image
           src="/images/interior/003ManiaLondon.avif"
           alt="Studio Zamani interiors"
@@ -18,14 +18,16 @@ export default function ContactPage() {
 
       {/* Headline band, matching Advisory / Studio */}
       <div className="px-6 lg:px-10 pt-10 lg:pt-16">
-        <PageLabel index={5} label="Contact" />
+        <div className="animate-fade-up [animation-delay:100ms]">
+          <PageLabel index={5} label="Contact" />
+        </div>
         <h1
-          className="text-[11vw] lg:text-[6.4vw] leading-[0.92] tracking-[-0.01em] max-w-[1400px]"
+          className="text-[11vw] lg:text-[6.4vw] leading-[0.92] tracking-[-0.01em] max-w-[1400px] animate-fade-up [animation-delay:200ms]"
           style={{ fontFamily: "Conneqt, sans-serif", fontWeight: 900 }}
         >
           Get in Touch
         </h1>
-        <div className="flex justify-end mt-8 lg:mt-10">
+        <div className="flex justify-end mt-8 lg:mt-10 animate-fade-up [animation-delay:320ms]">
           <p className="text-[15px] leading-relaxed max-w-[440px] text-[#1a1a1a]">
             For advisory inquiries, sourcing, press, or to visit the studio —
             reach out directly below.
@@ -34,7 +36,7 @@ export default function ContactPage() {
       </div>
 
       {/* Contact info */}
-      <div className="flex-shrink-0 border-t border-[#242020]/10 pb-[60px] lg:pb-0 mt-10 lg:mt-16">
+      <div className="flex-shrink-0 border-t border-[#242020]/10 pb-[60px] lg:pb-0 mt-10 lg:mt-16 animate-fade-up [animation-delay:420ms]">
         {/* Mobile: 2×2 grid */}
         <div className="grid grid-cols-2 gap-x-6 gap-y-8 px-6 py-8 lg:hidden">
           <div className="flex flex-col gap-3">
