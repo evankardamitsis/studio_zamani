@@ -208,7 +208,7 @@ export function InteriorsGallery() {
         }}
       >
         <div
-          className="absolute inset-0 z-0 flex items-center justify-center transition-opacity ease-in-out will-change-opacity"
+          className="absolute inset-0 z-0 flex items-center justify-end transition-opacity ease-in-out will-change-opacity"
           style={{ opacity: layer0Opacity, transitionDuration: `${FADE_MS}ms` }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -228,7 +228,7 @@ export function InteriorsGallery() {
         />
 
         <div
-          className="absolute inset-0 z-10 flex items-center justify-center transition-opacity ease-in-out will-change-opacity"
+          className="absolute inset-0 z-10 flex items-center justify-end transition-opacity ease-in-out will-change-opacity"
           style={{ opacity: layer1Opacity, transitionDuration: `${FADE_MS}ms` }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}

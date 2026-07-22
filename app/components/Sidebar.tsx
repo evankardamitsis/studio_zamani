@@ -22,7 +22,7 @@ export function Sidebar() {
 
   return (
     <aside
-      className="hidden lg:flex fixed top-0 left-0 h-screen flex-col z-20 animate-fade-in"
+      className="hidden lg:flex fixed top-0 left-0 h-screen flex-col z-20"
       style={{
         width: "166px",
         padding: "40px",
