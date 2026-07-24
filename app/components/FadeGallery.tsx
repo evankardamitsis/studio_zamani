@@ -244,21 +244,22 @@ export function FadeGallery({ images }: { images: GalleryImage[] }) {
               navigateDesktop(cursorDirection);
             }}
             aria-label={cursorDirection === "left" ? "Previous" : "Next"}
-            className="absolute z-30 flex h-20 w-20 items-center justify-center text-white mix-blend-difference pointer-events-auto cursor-none"
+            className="absolute z-30 flex items-center justify-center text-white mix-blend-difference pointer-events-auto cursor-none transition-opacity duration-300"
             style={{
               left: cursorX,
               top: cursorY,
               transform: "translate(-50%, -50%)",
+              opacity: isTransitioning ? 0.35 : 1,
             }}
             disabled={isTransitioning}
           >
             {cursorDirection === "left" ? (
-              <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
-                <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round" />
+              <svg width="52" height="18" viewBox="0 0 52 18" fill="none">
+                <path d="M50 9H3M3 9L12 2.5M3 9L12 15.5" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             ) : (
-              <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
-                <path d="M9 6L15 12L9 18" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round" />
+              <svg width="52" height="18" viewBox="0 0 52 18" fill="none">
+                <path d="M2 9H49M49 9L40 2.5M49 9L40 15.5" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             )}
           </button>
