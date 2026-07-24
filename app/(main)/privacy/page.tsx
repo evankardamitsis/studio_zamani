@@ -1,10 +1,10 @@
 export default function PrivacyPage() {
   return (
-    <section className="min-h-screen bg-[#f8f6ed] px-6 py-10 lg:px-10 lg:py-10">
-      <div className="mx-auto w-full max-w-3xl border border-[#242020]/10 bg-[#f8f6ed] p-6 lg:p-10">
+    <section className="min-h-screen bg-[#f8f8f2] px-6 py-10 lg:px-10 lg:py-10">
+      <div className="mx-auto w-full max-w-3xl border border-[#242020]/10 bg-[#f8f8f2] p-6 lg:p-10">
         <h1
           className="mb-8 text-[18px] uppercase tracking-[0.08em] text-[#242020]"
-          style={{ fontFamily: "Conneqt, sans-serif", fontWeight: 700 }}
+          style={{ fontFamily: "Aeonik, sans-serif", fontWeight: 700 }}
         >
           Privacy
         </h1>
@@ -18,7 +18,7 @@ export default function PrivacyPage() {
           <div className="space-y-2">
             <h2
               className="text-[12px] uppercase tracking-[0.08em]"
-              style={{ fontFamily: "Conneqt, sans-serif", fontWeight: 700 }}
+              style={{ fontFamily: "Aeonik, sans-serif", fontWeight: 700 }}
             >
               Information We Receive
             </h2>
@@ -31,7 +31,7 @@ export default function PrivacyPage() {
           <div className="space-y-2">
             <h2
               className="text-[12px] uppercase tracking-[0.08em]"
-              style={{ fontFamily: "Conneqt, sans-serif", fontWeight: 700 }}
+              style={{ fontFamily: "Aeonik, sans-serif", fontWeight: 700 }}
             >
               How Information Is Used
             </h2>
@@ -44,7 +44,7 @@ export default function PrivacyPage() {
           <div className="space-y-2">
             <h2
               className="text-[12px] uppercase tracking-[0.08em]"
-              style={{ fontFamily: "Conneqt, sans-serif", fontWeight: 700 }}
+              style={{ fontFamily: "Aeonik, sans-serif", fontWeight: 700 }}
             >
               Third Parties
             </h2>
@@ -57,7 +57,7 @@ export default function PrivacyPage() {
           <div className="space-y-2">
             <h2
               className="text-[12px] uppercase tracking-[0.08em]"
-              style={{ fontFamily: "Conneqt, sans-serif", fontWeight: 700 }}
+              style={{ fontFamily: "Aeonik, sans-serif", fontWeight: 700 }}
             >
               Contact
             </h2>

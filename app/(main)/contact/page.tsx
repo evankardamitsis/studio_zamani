@@ -1,73 +1,84 @@
-import Image from "next/image";
+import Link from "next/link";
+import { PlaceholderImage } from "../../components/PlaceholderImage";
+import { NewsletterForm } from "../../components/NewsletterForm";
 
 export default function ContactPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-[#f8f6ed] lg:pt-10 lg:pr-10">
-      {/* Full-bleed image */}
-      <div className="relative flex-1 overflow-hidden min-h-0 min-h-[50vw] lg:min-h-0">
-        <Image
-          src="/images/Mania_5 1.png"
-          alt="Studio Zamani"
-          fill
-          className="object-cover object-center"
-          sizes="100vw"
-          priority
-        />
+    <div className="min-h-screen bg-[#f8f8f2] flex flex-col lg:flex-row">
+      {/* Image — top aligns with logo, bottom aligns with Contact in the sidebar */}
+      <div className="w-full aspect-[2560/1917] lg:aspect-auto lg:w-[60%] lg:h-screen overflow-hidden bg-[#f8f8f2] p-0 lg:pl-10 lg:pr-10 lg:pt-10 lg:pb-16">
+        <div className="relative w-full h-full">
+          <PlaceholderImage
+            src="/images/contact_page.avif"
+            alt="Studio Zamani"
+            fill
+            className="object-cover object-left"
+            sizes="(max-width: 1024px) 100vw, 60vw"
+          />
+        </div>
       </div>
 
-      {/* Contact info */}
-      <div className="flex-shrink-0 border-t border-[#242020]/10 pb-[60px] lg:pb-0">
-        {/* Mobile: 2×2 grid */}
-        <div className="grid grid-cols-2 gap-x-6 gap-y-8 px-6 py-8 lg:hidden">
+      {/* Info — bottom aligned */}
+      <div className="w-full lg:w-[40%] lg:h-screen flex flex-col px-6 pt-8 pb-12 lg:px-12 lg:pt-10 lg:pb-16">
+        <div className="flex-1 flex flex-col justify-end gap-10">
+          {/* Email */}
           <div className="flex flex-col gap-3">
-            <p className="text-[16px] uppercase text-[#242020] leading-none" style={{fontFamily: "Conneqt, sans-serif", fontWeight: 700}}>Studio</p>
-            <p className="text-[15px] text-[#242020] leading-[1.5] whitespace-pre-line">{"MANIAZAMANI FINE JEWELRY\n505 Greenwich Street\nSuite 2F, New York\n+1 646 685 4584"}</p>
-          </div>
-
-          <div className="flex flex-col gap-3">
-            <p className="text-[16px] uppercase text-[#242020] leading-none" style={{fontFamily: "Conneqt, sans-serif", fontWeight: 700}}>Sales</p>
-            <a href="mailto:sales@maniazamani.com" className="text-[15px] text-[#242020] hover:opacity-60 transition-opacity leading-[1.5] break-all">
-              sales@maniazamani.com
+            <p
+              className="text-[13px] uppercase tracking-[0.12em] leading-none text-[#1a1a1a]"
+              style={{ fontFamily: "Aeonik, sans-serif", fontWeight: 700 }}
+            >
+              Email
+            </p>
+            <a
+              href="mailto:contact@studiozamani.com"
+              className="text-[15px] text-[#1a1a1a] underline underline-offset-4 decoration-[#1a1a1a]/40 hover:decoration-[#1a1a1a] transition-colors w-fit"
+            >
+              contact@studiozamani.com
             </a>
           </div>
 
+          {/* Studio */}
           <div className="flex flex-col gap-3">
-            <p className="text-[16px] uppercase text-[#242020] leading-none" style={{fontFamily: "Conneqt, sans-serif", fontWeight: 700}}>Press</p>
-            <a href="mailto:info@maniazamani.com" className="text-[15px] text-[#242020] hover:opacity-60 transition-opacity leading-[1.5] break-all">
-              info@maniazamani.com
-            </a>
+            <p
+              className="text-[13px] uppercase tracking-[0.12em] leading-none text-[#1a1a1a]"
+              style={{ fontFamily: "Aeonik, sans-serif", fontWeight: 700 }}
+            >
+              Studio
+            </p>
+            <p className="text-[15px] leading-[1.5] text-[#1a1a1a] max-w-[300px]">
+              18 Stanhope Terrace, Suite 5,<br />
+              W2 2TU, London, United Kingdom
+            </p>
           </div>
 
+          {/* Newsletter */}
           <div className="flex flex-col gap-3">
-            <p className="text-[16px] uppercase text-[#242020] leading-none" style={{fontFamily: "Conneqt, sans-serif", fontWeight: 700}}>Social</p>
-            <div className="flex flex-col gap-1">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-[15px] text-[#242020] hover:opacity-60 transition-opacity leading-[1.5]">Facebook</a>
-              <a href="https://instagram.com/studiozamani" target="_blank" rel="noopener noreferrer" className="text-[15px] text-[#242020] hover:opacity-60 transition-opacity leading-[1.5]">Instagram</a>
-            </div>
+            <p
+              className="text-[13px] uppercase tracking-[0.12em] leading-none text-[#1a1a1a]"
+              style={{ fontFamily: "Aeonik, sans-serif", fontWeight: 700 }}
+            >
+              Newsletter
+            </p>
+            <p className="text-[13px] leading-[1.5] text-[#1a1a1a]/70 max-w-[360px]">
+              Sign up for occasional news from the studio.
+            </p>
+            <NewsletterForm />
           </div>
         </div>
 
-        {/* Desktop: 4-column row */}
-        <div className="hidden lg:flex gap-[44px] px-10 py-10">
-          <div className="flex-1 flex flex-col gap-5">
-            <p className="text-[16px] uppercase text-[#242020] leading-none" style={{fontFamily: "Conneqt, sans-serif", fontWeight: 700}}>Studio</p>
-            <p className="text-[12px] text-[#242020] leading-[1.4] whitespace-pre-line">{"MANIAZAMANI FINE JEWELRY 505\nGreenwich Street, Suite 2F New York\n+1 646 685 4584"}</p>
-          </div>
-          <div className="flex-1 flex flex-col gap-5">
-            <p className="text-[16px] uppercase text-[#242020] leading-none" style={{fontFamily: "Conneqt, sans-serif", fontWeight: 700}}>Sales</p>
-            <a href="mailto:sales@maniazamani.com" className="text-[12px] text-[#242020] hover:opacity-60 transition-opacity leading-[1.4]">sales@maniazamani.com</a>
-          </div>
-          <div className="flex-1 flex flex-col gap-5">
-            <p className="text-[16px] uppercase text-[#242020] leading-none" style={{fontFamily: "Conneqt, sans-serif", fontWeight: 700}}>Press</p>
-            <a href="mailto:info@maniazamani.com" className="text-[12px] text-[#242020] hover:opacity-60 transition-opacity leading-[1.4]">info@maniazamani.com</a>
-          </div>
-          <div className="flex-1 flex flex-col gap-5">
-            <p className="text-[16px] uppercase text-[#242020] leading-none" style={{fontFamily: "Conneqt, sans-serif", fontWeight: 700}}>Social</p>
-            <div className="flex flex-col gap-1">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-[12px] text-[#242020] hover:opacity-60 transition-opacity leading-[1.4]">Facebook</a>
-              <a href="https://instagram.com/studiozamani" target="_blank" rel="noopener noreferrer" className="text-[12px] text-[#242020] hover:opacity-60 transition-opacity leading-[1.4]">Instagram</a>
-            </div>
-          </div>
+        {/* Legal / credit (desktop — mobile uses the global footer bar) */}
+        <div className="hidden lg:flex flex-wrap items-center gap-x-4 gap-y-1 pt-10">
+          <Link href="/cookies" className="text-[11px] text-[#242020]/40 hover:text-[#242020] transition-colors leading-none">Cookies</Link>
+          <Link href="/privacy" className="text-[11px] text-[#242020]/40 hover:text-[#242020] transition-colors leading-none">Privacy</Link>
+          <span className="text-[11px] text-[#242020]/30 leading-none">© {new Date().getFullYear()} Studio Zamani</span>
+          <a
+            href="https://belowthefold.gr"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[11px] text-[#8B7D6B] hover:text-[#242020] transition-colors leading-none"
+          >
+            Designed &amp; Developed by Below The Fold
+          </a>
         </div>
       </div>
     </div>

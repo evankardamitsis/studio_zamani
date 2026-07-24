@@ -9,7 +9,7 @@ const navItems = [
   { label: "Interiors", href: "/interiors" },
   { label: "Advisory", href: "/advisory" },
   { label: "Jewelry", href: "/jewelry" },
-  { label: "Studio", href: "/studio" },
+  { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -31,7 +31,7 @@ export function MobileNav() {
       {/* Top bar */}
       <header
         className="fixed top-0 left-0 right-0 z-30 flex items-center justify-between px-5 lg:hidden"
-        style={{ height: 56, background: "rgba(248,246,237,0.15)", backdropFilter: "blur(6px)", WebkitBackdropFilter: "blur(6px)" }}
+        style={{ height: 56, background: "rgba(248,248,242,0.15)", backdropFilter: "blur(6px)", WebkitBackdropFilter: "blur(6px)" }}
       >
         <Link href="/interiors">
           <Image src="/studio-zamani-logo.svg" alt="Studio Zamani" width={66} height={26} priority className="w-[66px] h-auto" />
@@ -51,7 +51,7 @@ export function MobileNav() {
       {/* Full-screen overlay */}
       <div
         className={`fixed inset-0 z-20 flex flex-col justify-center px-10 lg:hidden transition-opacity duration-300 ${open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
-        style={{ background: "#f8f6ed" }}
+        style={{ background: "#f8f8f2" }}
       >
         <nav className="flex flex-col gap-8 mt-8">
           {navItems.map((item) => (
@@ -65,6 +65,14 @@ export function MobileNav() {
           ))}
         </nav>
 
+        <a
+          href="https://instagram.com/studiozamanidesign"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-12 text-[15px] text-[#242020] tracking-tight hover:opacity-40 transition-opacity"
+        >
+          @studiozamanidesign
+        </a>
       </div>
     </>
   );

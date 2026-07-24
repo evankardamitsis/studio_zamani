@@ -1,24 +1,24 @@
 import { PlaceholderImage } from "../../components/PlaceholderImage";
 
-export default function StudioPage() {
+export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-[#f8f6ed] flex flex-col lg:flex-row cursor-default">
+    <div className="min-h-screen bg-[#f8f8f2] flex flex-col lg:flex-row cursor-default">
       {/* Image */}
-      <div className="w-full h-[105vw] lg:w-1/2 lg:h-screen overflow-hidden bg-[#f8f6ed] p-6 lg:p-10">
+      <div className="w-full aspect-[1963/2560] lg:aspect-auto lg:w-1/2 lg:h-screen overflow-hidden bg-[#f8f8f2] p-0 lg:p-10">
         <div className="relative w-full h-full">
           <PlaceholderImage
-            src="/images/interior/038ManiaLondon.avif"
+            src="/images/about_page.avif"
             alt="Mania Zamani, founder of Studio Zamani"
             fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 50vw"
+            className="object-cover object-top lg:object-contain"
+            sizes="(max-width: 1024px) 100vw, 50vw"
           />
         </div>
       </div>
 
       {/* Bio text */}
-      <div className="w-full lg:w-1/2 lg:h-screen flex flex-col justify-end px-6 pb-12 pt-8 lg:px-10 lg:pb-10 lg:pt-24">
-        <p className="text-[13px] uppercase tracking-[0.12em] leading-snug mb-8 max-w-[680px]" style={{fontFamily: "Conneqt, sans-serif", fontWeight: 700}}>
+      <div className="w-full lg:w-1/2 lg:h-screen flex flex-col justify-start lg:justify-end px-6 pb-12 pt-4 lg:px-10 lg:pb-[10vh] lg:pt-10">
+        <p className="text-[13px] uppercase tracking-[0.12em] leading-snug mb-8 max-w-[680px]" style={{fontFamily: "Aeonik, sans-serif", fontWeight: 700}}>
           Studio Zamani is a multidisciplinary design studio led by Mania
           Zamani, working across interior architecture, collectible design
           advisory, and fine jewelry.

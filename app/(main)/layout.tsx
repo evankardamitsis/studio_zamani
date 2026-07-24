@@ -14,7 +14,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
       </div>
       {/* Mobile footer */}
       <footer className="lg:hidden fixed bottom-0 left-0 right-0 z-30 flex items-center justify-between px-6 border-t border-[#242020]/10"
-              style={{ backgroundColor: "#f8f6ed", height: 48 }}>
+              style={{ backgroundColor: "#f8f8f2", height: 48 }}>
         <div className="flex items-center gap-3">
           <span className="text-[11px] text-[#242020]/60">© {new Date().getFullYear()} Studio Zamani</span>
           <Link href="/cookies" className="text-[11px] text-[#242020]/60 hover:text-[#242020] transition-colors">Cookies</Link>
