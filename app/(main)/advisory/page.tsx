@@ -48,7 +48,7 @@ export default function AdvisoryPage() {
       </div>
 
       {/* Copy */}
-      <div className="w-full lg:w-1/2 lg:h-screen flex flex-col justify-start px-6 pb-12 pt-4 lg:px-10 lg:py-10">
+      <div className="w-full lg:w-1/2 lg:h-screen flex flex-col justify-start lg:justify-center px-6 pb-12 pt-4 lg:px-10 lg:py-10">
         <p
           className="text-[16px] uppercase tracking-[0.12em] leading-snug mb-8 max-w-[680px] font-semibold"
           style={{ fontFamily: "Aeonik, sans-serif" }}
