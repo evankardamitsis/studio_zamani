@@ -17,7 +17,7 @@ export default function AboutPage() {
       </div>
 
       {/* Bio text */}
-      <div className="w-full lg:w-1/2 lg:h-screen flex flex-col justify-start lg:justify-center px-6 pb-12 pt-4 lg:px-10 lg:py-10">
+      <div className="w-full lg:w-1/2 lg:h-screen flex flex-col justify-start lg:justify-end px-6 pb-12 pt-4 lg:px-10 lg:py-10">
         <p className="text-[16px] uppercase tracking-[0.12em] leading-snug mb-8 max-w-[680px] font-semibold" style={{fontFamily: "Aeonik, sans-serif"}}>
           Studio Zamani is a multidisciplinary design studio led by Mania
           Zamani, working across interior architecture, collectible design

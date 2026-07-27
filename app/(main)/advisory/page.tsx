@@ -48,53 +48,57 @@ export default function AdvisoryPage() {
       </div>
 
       {/* Copy — title aligns with matchstick head */}
-      <div className="w-full lg:flex-1 lg:min-w-0 lg:h-full flex flex-col px-6 py-8 lg:px-0 lg:py-0 lg:-ml-6">
+      <div className="w-full lg:flex-1 lg:min-w-0 lg:h-full flex flex-col px-6 py-8 lg:px-0 lg:py-0 lg:ml-4">
         <div className="lg:h-full lg:flex lg:flex-col">
           <div className="hidden lg:block lg:h-[31.9%] lg:flex-shrink-0" aria-hidden="true" />
-          <div className="lg:flex-1 lg:min-h-0 lg:max-w-[460px] xl:max-w-[480px] lg:text-[clamp(12.5px,1.38vh,15px)]">
-            <p
-              className="text-[1.067em] uppercase tracking-[0.08em] leading-none mb-3 lg:mb-2.5 font-semibold"
-              style={{ fontFamily: "Aeonik, sans-serif" }}
-            >
-              Collectible Design Advisory
-            </p>
+          <div className="lg:flex-1 lg:min-h-0 lg:flex lg:flex-col lg:max-w-[460px] xl:max-w-[480px] lg:text-[clamp(12.5px,1.38vh,15px)]">
+            <div className="flex-shrink-0">
+              <p
+                className="text-[1.067em] uppercase tracking-[0.08em] leading-none mb-3 lg:mb-2.5 font-semibold"
+                style={{ fontFamily: "Aeonik, sans-serif" }}
+              >
+                Collectible Design Advisory
+              </p>
 
-            <div className="flex flex-col gap-1.5 lg:gap-1 text-[1em] leading-[1.45] text-[#1a1a1a] font-normal">
-              <p>Each project begins with the person, the place, and the way it is lived in.
-                <br></br>Through Studio Zamani, I work with clients to create a more considered way of living
-                with furniture, objects, and works of art.
-                <br></br>
-                Guided by my background in interior architecture, design history, provenance, and
-                material knowledge, I curate vintage and contemporary design, historically significant
-                pieces, works by emerging designers, and objects chosen for their relevance to each
-                project.
+              <div className="flex flex-col gap-1.5 lg:gap-1 text-[1em] leading-[1.45] text-[#1a1a1a] font-normal">
+                <p>Each project begins with the person, the place, and the way it is lived in.
+                  <br></br>Through Studio Zamani, I work with clients to create a more considered way of living
+                  with furniture, objects, and works of art.
+                  <br></br>
+                  Guided by my background in interior architecture, design history, provenance, and
+                  material knowledge, I curate vintage and contemporary design, historically significant
+                  pieces, works by emerging designers, and objects chosen for their relevance to each
+                  project.
+                </p>
+              </div>
+
+              <p className="mt-2 lg:mt-1.5 text-[1em] leading-[1.45] text-[#1a1a1a] font-normal">
+                My aim is to help clients build collections that are coherent, thoughtful, and built to
+                endure.
               </p>
             </div>
 
-            <p className="mt-2 lg:mt-1.5 text-[1em] leading-[1.45] text-[#1a1a1a] font-normal">
-              My aim is to help clients build collections that are coherent, thoughtful, and built to
-              endure.
-            </p>
+            <div className="flex-1 min-h-0 flex flex-col justify-end">
+              <p
+                className="mt-4 lg:mt-3 mb-1 text-[1.133em] uppercase tracking-[0.01em] leading-none text-[#1a1a1a] font-semibold"
+                style={{ fontFamily: "Aeonik, sans-serif" }}
+              >
+                The Process
+              </p>
 
-            <p
-              className="mt-4 lg:mt-3 mb-2 lg:mb-1.5 text-[1.133em] uppercase tracking-[0.01em] leading-none text-[#1a1a1a] font-semibold"
-              style={{ fontFamily: "Aeonik, sans-serif" }}
-            >
-              The Process
-            </p>
-
-            <div className="flex flex-col gap-1 lg:gap-0.5">
-              {steps.map((step) => (
-                <div key={step.title} className="flex flex-col">
-                  <p
-                    className="text-[1em] uppercase leading-tight text-[#1a1a1a] font-medium"
-                    style={{ fontFamily: "Aeonik, sans-serif" }}
-                  >
-                    {step.title}
-                  </p>
-                  <p className="text-[1em] leading-[1.38] text-[#1a1a1a]/70 font-normal">{step.body}</p>
-                </div>
-              ))}
+              <div className="flex flex-col gap-1 lg:gap-0.5">
+                {steps.map((step) => (
+                  <div key={step.title} className="flex flex-col">
+                    <p
+                      className="text-[1em] uppercase leading-tight text-[#1a1a1a] font-medium"
+                      style={{ fontFamily: "Aeonik, sans-serif" }}
+                    >
+                      {step.title}
+                    </p>
+                    <p className="text-[1em] leading-[1.38] text-[#1a1a1a]/70 font-normal">{step.body}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
