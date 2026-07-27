@@ -17,14 +17,14 @@ export default function AboutPage() {
       </div>
 
       {/* Bio text */}
-      <div className="w-full lg:w-1/2 lg:h-screen flex flex-col justify-start lg:justify-end px-6 pb-12 pt-4 lg:px-10 lg:pb-[10vh] lg:pt-10">
-        <p className="text-[13px] uppercase tracking-[0.12em] leading-snug mb-8 max-w-[680px]" style={{fontFamily: "Aeonik, sans-serif", fontWeight: 700}}>
+      <div className="w-full lg:w-1/2 lg:h-screen flex flex-col justify-start lg:justify-center px-6 pb-12 pt-4 lg:px-10 lg:py-10">
+        <p className="text-[16px] uppercase tracking-[0.12em] leading-snug mb-8 max-w-[680px] font-semibold" style={{fontFamily: "Aeonik, sans-serif"}}>
           Studio Zamani is a multidisciplinary design studio led by Mania
           Zamani, working across interior architecture, collectible design
           advisory, and fine jewelry.
         </p>
 
-        <div className="flex flex-col gap-4 text-[13px] leading-[1.65] text-[#1a1a1a] max-w-[680px]">
+        <div className="flex flex-col gap-4 text-[15px] leading-[1.65] text-[#1a1a1a] max-w-[680px] font-normal">
           <p>
             Having studied interior architecture, jewelry design, and gemology,
             Mania approaches space through proportion, materiality, and detail.

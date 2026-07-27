@@ -24,14 +24,14 @@ export default function ContactPage() {
           {/* Email */}
           <div className="flex flex-col gap-3">
             <p
-              className="text-[13px] uppercase tracking-[0.12em] leading-none text-[#1a1a1a]"
-              style={{ fontFamily: "Aeonik, sans-serif", fontWeight: 700 }}
+              className="text-[13px] uppercase tracking-[0.12em] leading-none text-[#1a1a1a] font-semibold"
+              style={{ fontFamily: "Aeonik, sans-serif" }}
             >
               Email
             </p>
             <a
               href="mailto:contact@studiozamani.com"
-              className="text-[15px] text-[#1a1a1a] underline underline-offset-4 decoration-[#1a1a1a]/40 hover:decoration-[#1a1a1a] transition-colors w-fit"
+              className="text-[15px] font-normal text-[#1a1a1a] underline underline-offset-4 decoration-[#1a1a1a]/40 hover:decoration-[#1a1a1a] transition-colors w-fit"
             >
               contact@studiozamani.com
             </a>
@@ -40,12 +40,12 @@ export default function ContactPage() {
           {/* Studio */}
           <div className="flex flex-col gap-3">
             <p
-              className="text-[13px] uppercase tracking-[0.12em] leading-none text-[#1a1a1a]"
-              style={{ fontFamily: "Aeonik, sans-serif", fontWeight: 700 }}
+              className="text-[13px] uppercase tracking-[0.12em] leading-none text-[#1a1a1a] font-semibold"
+              style={{ fontFamily: "Aeonik, sans-serif" }}
             >
               Studio
             </p>
-            <p className="text-[15px] leading-[1.5] text-[#1a1a1a] max-w-[300px]">
+            <p className="text-[15px] leading-[1.5] text-[#1a1a1a] max-w-[300px] font-normal">
               18 Stanhope Terrace, Suite 5,<br />
               W2 2TU, London, United Kingdom
             </p>
@@ -54,12 +54,12 @@ export default function ContactPage() {
           {/* Newsletter */}
           <div className="flex flex-col gap-3">
             <p
-              className="text-[13px] uppercase tracking-[0.12em] leading-none text-[#1a1a1a]"
-              style={{ fontFamily: "Aeonik, sans-serif", fontWeight: 700 }}
+              className="text-[13px] uppercase tracking-[0.12em] leading-none text-[#1a1a1a] font-semibold"
+              style={{ fontFamily: "Aeonik, sans-serif" }}
             >
               Newsletter
             </p>
-            <p className="text-[13px] leading-[1.5] text-[#1a1a1a]/70 max-w-[360px]">
+            <p className="text-[13px] leading-[1.5] text-[#1a1a1a]/70 max-w-[360px] font-normal">
               Sign up for occasional news from the studio.
             </p>
             <NewsletterForm />

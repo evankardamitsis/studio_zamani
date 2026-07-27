@@ -48,7 +48,7 @@ export function Sidebar() {
           <Link
             key={item.href}
             href={item.href}
-            className={`text-[12px] leading-none text-[#242020] hover:opacity-50 transition-opacity ${
+            className={`text-[14px] leading-none text-[#242020] hover:opacity-50 transition-opacity ${
               isActive(item.href) ? "font-semibold" : "font-normal"
             }`}
           >
@@ -61,7 +61,7 @@ export function Sidebar() {
       <div className="mt-auto flex flex-col gap-[12px]">
         <Link
           href="/contact"
-          className={`text-[12px] leading-none text-[#242020] hover:opacity-50 transition-opacity ${
+          className={`text-[14px] leading-none text-[#242020] hover:opacity-50 transition-opacity ${
             isActive("/contact") ? "font-semibold" : "font-normal"
           }`}
         >
@@ -71,7 +71,7 @@ export function Sidebar() {
           href="https://instagram.com/studiozamanidesign"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[12px] leading-none text-[#242020] hover:opacity-50 transition-opacity"
+          className="text-[14px] leading-none text-[#242020] hover:opacity-50 transition-opacity"
         >
           @studiozamanidesign
         </a>

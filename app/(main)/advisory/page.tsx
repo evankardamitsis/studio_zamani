@@ -33,70 +33,70 @@ const steps = [
 
 export default function AdvisoryPage() {
   return (
-    <div className="bg-[#f8f8f2] flex flex-col lg:flex-row lg:items-start">
-      {/* Image */}
-      <div className="w-full aspect-[1734/2560] lg:aspect-auto lg:w-1/2 lg:h-screen lg:sticky lg:top-0 overflow-hidden bg-[#f8f8f2] p-0 lg:p-10">
+    <div className="bg-[#f8f8f2] flex flex-col lg:flex-row lg:h-screen lg:px-10 lg:gap-10 lg:py-8 lg:box-border">
+      {/* Image — equal width & height to text column */}
+      <div className="w-full aspect-[1734/2560] lg:aspect-auto lg:flex-1 lg:min-w-0 lg:h-full overflow-hidden bg-[#f8f8f2]">
         <div className="relative w-full h-full">
           <PlaceholderImage
             src="/images/advisory_page.avif"
             alt="Studio Zamani, collectible design advisory"
             fill
-            className="object-cover object-top lg:object-contain"
+            className="object-cover object-top lg:object-contain lg:object-top"
             sizes="(max-width: 1024px) 100vw, 50vw"
           />
         </div>
       </div>
 
-      {/* Copy */}
-      <div className="w-full lg:w-1/2 lg:min-h-screen flex flex-col justify-start px-6 py-8 lg:px-10 lg:py-0 lg:pt-[calc(31.9vh+8px)] lg:pb-8">
-        {/* Page title — caps (site-wide: caps for page title only) */}
-        <p
-          className="text-[13px] uppercase tracking-[0.08em] leading-none mb-4"
-          style={{ fontFamily: "Aeonik, sans-serif", fontWeight: 700 }}
-        >
-          Collectible Design Advisory
-        </p>
+      {/* Copy — title aligns with matchstick head */}
+      <div className="w-full lg:flex-1 lg:min-w-0 lg:h-full flex flex-col px-6 py-8 lg:px-0 lg:py-0 lg:-ml-6">
+        <div className="lg:h-full lg:flex lg:flex-col">
+          <div className="hidden lg:block lg:h-[31.9%] lg:flex-shrink-0" aria-hidden="true" />
+          <div className="lg:flex-1 lg:min-h-0 lg:max-w-[460px] xl:max-w-[480px] lg:text-[clamp(12.5px,1.38vh,15px)]">
+            <p
+              className="text-[1.067em] uppercase tracking-[0.08em] leading-none mb-3 lg:mb-2.5 font-semibold"
+              style={{ fontFamily: "Aeonik, sans-serif" }}
+            >
+              Collectible Design Advisory
+            </p>
 
-        <div className="flex flex-col gap-2 text-[13px] leading-[1.55] text-[#1a1a1a] max-w-[560px]">
-          <p>Each project begins with the person, the place, and the way it is lived in.</p>
-          <p>
-            Through Studio Zamani, I work with clients to create a more considered way of living
-            with furniture, objects, and works of art.
-          </p>
-          <p>
-            Guided by my background in interior architecture, design history, provenance, and
-            material knowledge, I curate vintage and contemporary design, historically significant
-            pieces, works by emerging designers, and objects chosen for their relevance to each
-            project.
-          </p>
-        </div>
-
-        {/* Closing thought — set apart with space */}
-        <p className="mt-4 text-[13px] leading-[1.55] text-[#1a1a1a] max-w-[560px]">
-          My aim is to help clients build collections that are coherent, thoughtful, and built to
-          endure.
-        </p>
-
-        {/* Section shift signalled by space + weight, not a rule */}
-        <p
-          className="mt-6 mb-2.5 text-[15px] tracking-[0.01em] leading-none text-[#1a1a1a]"
-          style={{ fontFamily: "Aeonik, sans-serif", fontWeight: 500 }}
-        >
-          The Process
-        </p>
-
-        <div className="flex flex-col gap-1.5 max-w-[560px]">
-          {steps.map((step) => (
-            <div key={step.title} className="flex flex-col">
-              <p
-                className="text-[13px] leading-tight text-[#1a1a1a]"
-                style={{ fontFamily: "Aeonik, sans-serif", fontWeight: 500 }}
-              >
-                {step.title}
+            <div className="flex flex-col gap-1.5 lg:gap-1 text-[1em] leading-[1.45] text-[#1a1a1a] font-normal">
+              <p>Each project begins with the person, the place, and the way it is lived in.
+                <br></br>Through Studio Zamani, I work with clients to create a more considered way of living
+                with furniture, objects, and works of art.
+                <br></br>
+                Guided by my background in interior architecture, design history, provenance, and
+                material knowledge, I curate vintage and contemporary design, historically significant
+                pieces, works by emerging designers, and objects chosen for their relevance to each
+                project.
               </p>
-              <p className="text-[13px] leading-[1.4] text-[#1a1a1a]/70">{step.body}</p>
             </div>
-          ))}
+
+            <p className="mt-2 lg:mt-1.5 text-[1em] leading-[1.45] text-[#1a1a1a] font-normal">
+              My aim is to help clients build collections that are coherent, thoughtful, and built to
+              endure.
+            </p>
+
+            <p
+              className="mt-4 lg:mt-3 mb-2 lg:mb-1.5 text-[1.133em] uppercase tracking-[0.01em] leading-none text-[#1a1a1a] font-semibold"
+              style={{ fontFamily: "Aeonik, sans-serif" }}
+            >
+              The Process
+            </p>
+
+            <div className="flex flex-col gap-1 lg:gap-0.5">
+              {steps.map((step) => (
+                <div key={step.title} className="flex flex-col">
+                  <p
+                    className="text-[1em] uppercase leading-tight text-[#1a1a1a] font-medium"
+                    style={{ fontFamily: "Aeonik, sans-serif" }}
+                  >
+                    {step.title}
+                  </p>
+                  <p className="text-[1em] leading-[1.38] text-[#1a1a1a]/70 font-normal">{step.body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>
