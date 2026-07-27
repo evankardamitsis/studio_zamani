@@ -33,40 +33,37 @@ const steps = [
 
 export default function AdvisoryPage() {
   return (
-    <div className="min-h-screen bg-[#f8f8f2] flex flex-col lg:flex-row cursor-default">
+    <div className="min-h-screen bg-[#f8f8f2] flex flex-col xl:flex-row cursor-default">
       {/* Image */}
-      <div className="w-full aspect-[1734/2560] lg:aspect-auto lg:w-1/2 lg:h-screen overflow-hidden bg-[#f8f8f2] p-0 lg:p-10">
+      <div className="w-full aspect-[1734/2560] xl:aspect-auto xl:w-1/2 xl:h-screen overflow-hidden bg-[#f8f8f2] p-6 md:p-8 xl:p-10">
         <div className="relative w-full h-full">
           <PlaceholderImage
             src="/images/advisory_page.avif"
             alt="Studio Zamani, collectible design advisory"
             fill
-            className="object-cover object-top lg:object-contain"
-            sizes="(max-width: 1024px) 100vw, 50vw"
+            className="object-cover object-top xl:object-contain"
+            sizes="(max-width: 1280px) 100vw, 50vw"
           />
         </div>
       </div>
 
-      {/* Copy */}
-      <div className="w-full lg:w-1/2 lg:h-screen flex flex-col justify-start lg:justify-center px-6 pb-12 pt-4 lg:px-10 lg:py-10">
+      {/* Copy — title anchored to the lamp */}
+      <div className="w-full xl:w-1/2 xl:h-screen flex flex-col justify-start px-6 pb-12 pt-6 xl:px-10 xl:pb-10 xl:pt-[10vh]">
         <p
-          className="text-[16px] uppercase tracking-[0.12em] leading-snug mb-8 max-w-[680px] font-semibold"
+          className="text-[16px] uppercase tracking-[0.12em] leading-snug mb-4 font-semibold"
           style={{ fontFamily: "Aeonik, sans-serif" }}
         >
           Collectible Design Advisory
         </p>
 
-        <div className="flex flex-col gap-4 text-[15px] leading-[1.65] text-[#1a1a1a] max-w-[680px] font-normal">
+        <div className="flex flex-col gap-2.5 text-[15px] leading-[1.55] text-[#1a1a1a] max-w-[560px]">
           <p>
-            Each project begins with the person, the place, and the way it is lived in.
-            <br />
-            Through Studio Zamani, I work with clients to create a more considered way of living
-            with furniture, objects, and works of art.
-            <br />
-            Guided by my background in interior architecture, design history, provenance, and
-            material knowledge, I curate vintage and contemporary design, historically significant
-            pieces, works by emerging designers, and objects chosen for their relevance to each
-            project.
+            Each project begins with the person, the place, and the way it is lived in.</p> <p>Through
+              Studio Zamani, I work with clients to create a more considered way of living with
+              furniture, objects, and works of art. Guided by my background in interior architecture,
+              design history, provenance, and material knowledge, I curate vintage and contemporary
+              design, historically significant pieces, works by emerging designers, and objects
+              chosen for their relevance to each project.
           </p>
           <p>
             My aim is to help clients build collections that are coherent, thoughtful, and built to
@@ -75,22 +72,22 @@ export default function AdvisoryPage() {
         </div>
 
         <p
-          className="mt-8 mb-4 text-[16px] uppercase tracking-[0.12em] leading-snug max-w-[680px] font-semibold"
+          className="mt-6 mb-3 text-[16px] uppercase tracking-[0.12em] leading-snug font-semibold"
           style={{ fontFamily: "Aeonik, sans-serif" }}
         >
           The Process
         </p>
 
-        <div className="flex flex-col gap-4 max-w-[680px]">
+        <div className="flex flex-col gap-2 max-w-[560px]">
           {steps.map((step) => (
             <div key={step.title} className="flex flex-col">
               <p
-                className="text-[15px] uppercase leading-snug text-[#1a1a1a] font-medium"
+                className="text-[14px] uppercase tracking-[0.04em] leading-snug text-[#1a1a1a] font-medium"
                 style={{ fontFamily: "Aeonik, sans-serif" }}
               >
                 {step.title}
               </p>
-              <p className="text-[15px] leading-[1.65] text-[#1a1a1a]/70 font-normal">{step.body}</p>
+              <p className="text-[14px] leading-[1.4] text-[#1a1a1a]/70">{step.body}</p>
             </div>
           ))}
         </div>

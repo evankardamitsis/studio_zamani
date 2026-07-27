@@ -114,7 +114,7 @@ export function FadeGallery({ images }: { images: GalleryImage[] }) {
   }, [lightboxIndex, closeLightbox, prevImage, nextImage]);
 
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 1024);
+    const check = () => setIsMobile(window.innerWidth < 1280);
     check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);

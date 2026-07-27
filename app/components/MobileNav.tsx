@@ -30,7 +30,7 @@ export function MobileNav() {
     <>
       {/* Top bar */}
       <header
-        className="fixed top-0 left-0 right-0 z-30 flex items-center justify-between px-5 lg:hidden"
+        className="fixed top-0 left-0 right-0 z-30 flex items-center justify-between px-5 xl:hidden"
         style={{ height: 56, background: "rgba(248,248,242,0.15)", backdropFilter: "blur(6px)", WebkitBackdropFilter: "blur(6px)" }}
       >
         <Link href="/interiors">
@@ -50,7 +50,7 @@ export function MobileNav() {
 
       {/* Full-screen overlay */}
       <div
-        className={`fixed inset-0 z-20 flex flex-col justify-center px-10 lg:hidden transition-opacity duration-300 ${open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+        className={`fixed inset-0 z-20 flex flex-col justify-center px-10 xl:hidden transition-opacity duration-300 ${open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
         style={{ background: "#f8f8f2" }}
       >
         <nav className="flex flex-col gap-8 mt-8">

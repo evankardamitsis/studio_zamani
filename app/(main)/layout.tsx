@@ -8,12 +8,12 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
       <MobileNav />
       <div className="flex min-h-screen">
         <Sidebar />
-        <main className="flex-1 min-w-0 pt-[56px] lg:pt-0 lg:pl-[166px] pb-[48px] lg:pb-0">
+        <main className="flex-1 min-w-0 pt-[56px] xl:pt-0 xl:pl-[166px] pb-[48px] xl:pb-0">
           {children}
         </main>
       </div>
       {/* Mobile footer */}
-      <footer className="lg:hidden fixed bottom-0 left-0 right-0 z-30 flex items-center justify-between px-6 border-t border-[#242020]/10"
+      <footer className="xl:hidden fixed bottom-0 left-0 right-0 z-30 flex items-center justify-between px-6 border-t border-[#242020]/10"
               style={{ backgroundColor: "#f8f8f2", height: 48 }}>
         <div className="flex items-center gap-3">
           <span className="text-[11px] text-[#242020]/60">© {new Date().getFullYear()} Studio Zamani</span>
