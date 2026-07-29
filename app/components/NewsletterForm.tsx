@@ -2,6 +2,9 @@
 
 import { useState } from "react";
 
+const KLAVIYO_COMPANY_ID = "X7U95S";
+const KLAVIYO_LIST_ID = "VazJTw";
+
 export function NewsletterForm() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
@@ -13,11 +16,44 @@ export function NewsletterForm() {
     setStatus("loading");
 
     try {
-      const res = await fetch("/api/newsletter", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
+      const res = await fetch(
+        `https://a.klaviyo.com/client/subscriptions/?company_id=${KLAVIYO_COMPANY_ID}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            revision: "2024-10-15",
+          },
+          body: JSON.stringify({
+            data: {
+              type: "subscription",
+              attributes: {
+                custom_source: "Studio Zamani Website",
+                profile: {
+                  data: {
+                    type: "profile",
+                    attributes: {
+                      email,
+                      subscriptions: {
+                        email: {
+                          marketing: {
+                            consent: "SUBSCRIBED",
+                          },
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+              relationships: {
+                list: {
+                  data: { type: "list", id: KLAVIYO_LIST_ID },
+                },
+              },
+            },
+          }),
+        }
+      );
 
       if (!res.ok) throw new Error();
       setStatus("done");
