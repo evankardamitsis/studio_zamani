@@ -13,6 +13,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script async src="https://static.klaviyo.com/onsite/js/X7U95S/klaviyo.js?company_id=X7U95S" />
+      </head>
       <body className="antialiased">
         {children}
       </body>
