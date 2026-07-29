@@ -17,12 +17,12 @@ export function NewsletterForm() {
 
     try {
       const res = await fetch(
-        `https://a.klaviyo.com/client/subscriptions/?company_id=${KLAVIYO_COMPANY_ID}`,
+        `https://a.klaviyo.com/client/subscriptions?company_id=${KLAVIYO_COMPANY_ID}`,
         {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
-            revision: "2024-10-15",
+            "Content-Type": "application/vnd.api+json",
+            revision: "2026-01-15",
           },
           body: JSON.stringify({
             data: {
@@ -55,7 +55,7 @@ export function NewsletterForm() {
         }
       );
 
-      if (!res.ok) throw new Error();
+      if (res.status !== 202) throw new Error();
       setStatus("done");
     } catch {
       setStatus("error");
