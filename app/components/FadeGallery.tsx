@@ -254,12 +254,24 @@ export function FadeGallery({ images }: { images: GalleryImage[] }) {
             disabled={isTransitioning}
           >
             {cursorDirection === "left" ? (
-              <svg width="52" height="30" viewBox="0 0 52 30" fill="none">
-                <path d="M49 15H4M4 15L17 3M4 15L17 27" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              <svg width="56" height="56" viewBox="0 0 36 36" fill="none" className="-rotate-45">
+                <path
+                  d="M24 24L12 12M12 12H22M12 12V22"
+                  stroke="currentColor"
+                  strokeWidth="1.25"
+                  strokeLinecap="square"
+                  strokeLinejoin="miter"
+                />
               </svg>
             ) : (
-              <svg width="52" height="30" viewBox="0 0 52 30" fill="none">
-                <path d="M3 15H48M48 15L35 3M48 15L35 27" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              <svg width="56" height="56" viewBox="0 0 36 36" fill="none" className="rotate-45">
+                <path
+                  d="M12 24L24 12M24 12H14M24 12V22"
+                  stroke="currentColor"
+                  strokeWidth="1.25"
+                  strokeLinecap="square"
+                  strokeLinejoin="miter"
+                />
               </svg>
             )}
           </button>
