@@ -6,20 +6,20 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-[#f8f8f2] flex flex-col xl:flex-row">
       {/* Image — top aligns with logo, bottom aligns with Contact in the sidebar */}
-      <div className="w-full aspect-[2560/1917] xl:aspect-auto xl:w-[60%] xl:h-screen overflow-hidden bg-[#f8f8f2] p-6 xl:pl-10 xl:pr-10 xl:pt-10 xl:pb-16">
+      <div className="w-full aspect-[2560/1917] xl:aspect-auto xl:w-[70%] xl:h-screen overflow-hidden bg-[#f8f8f2] p-6 xl:pl-10 xl:pr-10 xl:pt-10 xl:pb-16">
         <div className="relative w-full h-full">
           <PlaceholderImage
             src="/images/contact_page.avif"
             alt="Studio Zamani"
             fill
             className="object-cover object-left"
-            sizes="(max-width: 1280px) 100vw, 60vw"
+            sizes="(max-width: 1280px) 100vw, 70vw"
           />
         </div>
       </div>
 
       {/* Info — bottom aligned */}
-      <div className="w-full xl:w-[40%] xl:h-screen flex flex-col px-6 pt-8 pb-12 xl:px-12 xl:pt-10 xl:pb-16">
+      <div className="w-full xl:w-[30%] xl:h-screen flex flex-col px-6 pt-8 pb-12 xl:px-10 xl:pt-10 xl:pb-16">
         <div className="flex-1 flex flex-col justify-end gap-10">
           {/* Email */}
           <div className="flex flex-col gap-3">
