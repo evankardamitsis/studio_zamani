@@ -24,7 +24,7 @@ export default function AboutPage() {
           advisory, and fine jewelry.
         </p>
 
-        <div className="flex flex-col gap-4 text-[15px] leading-[1.65] text-[#1a1a1a] max-w-[640px] font-normal">
+        <div className="flex flex-col gap-4 text-[15px] leading-[1.65] text-[#1a1a1a] max-w-[630px] font-normal">
           <p>
             Having studied interior architecture, jewelry design, and gemology,
             Mania approaches space through proportion, materiality, and detail.
