@@ -30,7 +30,7 @@ export default function AboutPage() {
             Mania approaches space through proportion, materiality, and detail.
             Her work is defined by restraint, tactile richness, and a
             considered dialogue between contemporary pieces, vintage furniture,
-            and <span className="xl:whitespace-nowrap">collectible objects</span>.<br></br>
+            and <span className="xl:whitespace-nowrap">collectible objects</span>.
             Through Studio Zamani, she creates interiors for private and public
             spaces, balancing function with atmosphere and quiet character.
             Each project is guided by clarity, craftsmanship, and the belief
