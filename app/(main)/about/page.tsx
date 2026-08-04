@@ -18,19 +18,19 @@ export default function AboutPage() {
 
       {/* Bio text */}
       <div className="w-full xl:w-1/2 xl:h-screen flex flex-col justify-start xl:justify-end px-6 pb-12 pt-4 xl:px-10 xl:py-10">
-        <p className="text-[16px] uppercase tracking-[0.12em] leading-snug mb-8 max-w-[640px] font-semibold" style={{ fontFamily: "Aeonik, sans-serif" }}>
+        <p className="text-[16px] uppercase tracking-[0.12em] leading-[1.7] mb-8 max-w-[640px] font-semibold" style={{ fontFamily: "Aeonik, sans-serif", wordSpacing: "0.06em" }}>
           Studio Zamani is a multidisciplinary design studio led by Mania
           Zamani, working across interior architecture, collectible design
           advisory, and fine jewelry.
         </p>
 
-        <div className="flex flex-col gap-4 text-[15px] leading-[1.65] text-[#1a1a1a] max-w-[630px] font-normal">
+        <div className="flex flex-col gap-4 text-[15px] leading-[2] text-[#1a1a1a] max-w-[630px] font-normal" style={{ wordSpacing: "0.04em" }}>
           <p>
             Having studied interior architecture, jewelry design, and gemology,
             Mania approaches space through proportion, materiality, and detail.
             Her work is defined by restraint, tactile richness, and a
             considered dialogue between contemporary pieces, vintage furniture,
-            and collectible objects.<br></br>
+            and <span className="xl:whitespace-nowrap">collectible objects</span>.<br></br>
             Through Studio Zamani, she creates interiors for private and public
             spaces, balancing function with atmosphere and quiet character.
             Each project is guided by clarity, craftsmanship, and the belief
