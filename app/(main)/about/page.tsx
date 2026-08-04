@@ -18,8 +18,8 @@ export default function AboutPage() {
 
       {/* Bio text */}
       <div className="w-full xl:w-1/2 xl:h-screen flex flex-col justify-start xl:justify-end px-6 pb-12 pt-4 xl:px-10 xl:py-10">
-        <p className="text-[16px] uppercase tracking-[0.12em] leading-[1.7] mb-8 max-w-[640px] font-semibold" style={{ fontFamily: "Aeonik, sans-serif", wordSpacing: "0.06em" }}>
-          Studio Zamani is a multidisciplinary design studio led by Mania
+        <p className="text-[15px] xl:text-[16px] uppercase tracking-[0.12em] leading-[1.7] mb-8 max-w-[640px] font-semibold" style={{ fontFamily: "Aeonik, sans-serif", wordSpacing: "0.06em" }}>
+          Studio Zamani is <span className="whitespace-nowrap">a multidisciplinary</span> design studio led by Mania
           Zamani, working across interior architecture, collectible design
           advisory, and fine jewelry.
         </p>
