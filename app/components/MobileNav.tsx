@@ -15,6 +15,7 @@ const navItems = [
 
 export function MobileNav() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
   // Close menu on route change
@@ -26,12 +27,19 @@ export function MobileNav() {
     return () => { document.body.style.overflow = ""; };
   }, [open]);
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <>
       {/* Top bar */}
       <header
         className="fixed top-0 left-0 right-0 z-30 flex items-center justify-between px-5 xl:hidden"
-        style={{ height: 56, background: "#f8f8f2" }}
+        style={{ height: 56, background: scrolled ? "transparent" : "#f8f8f2" }}
       >
         <Link href="/interiors">
           <Image src="/studio-zamani-logo.svg" alt="Studio Zamani" width={66} height={26} priority className="w-[66px] h-auto" />
