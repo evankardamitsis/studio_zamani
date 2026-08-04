@@ -31,7 +31,7 @@ export function MobileNav() {
       {/* Top bar */}
       <header
         className="fixed top-0 left-0 right-0 z-30 flex items-center justify-between px-5 xl:hidden"
-        style={{ height: 56, background: "rgba(248,248,242,0.15)", backdropFilter: "blur(6px)", WebkitBackdropFilter: "blur(6px)" }}
+        style={{ height: 56, background: "#f8f8f2" }}
       >
         <Link href="/interiors">
           <Image src="/studio-zamani-logo.svg" alt="Studio Zamani" width={66} height={26} priority className="w-[66px] h-auto" />
