@@ -57,7 +57,7 @@ export default function AdvisoryPage() {
         </p>
 
         <div
-          className="flex flex-col gap-2.5 text-[15px] leading-[2] text-[#1a1a1a] max-w-[560px]"
+          className="flex flex-col gap-1.5 text-[15px] leading-[2] text-[#1a1a1a] max-w-[560px]"
           style={{ wordSpacing: "0.04em" }}
         >
           <p>
@@ -75,7 +75,7 @@ export default function AdvisoryPage() {
         </div>
 
         <p
-          className="mt-6 mb-3 text-[16px] uppercase tracking-[0.12em] leading-[1.7] font-semibold"
+          className="mt-5 mb-3 text-[16px] uppercase tracking-[0.12em] leading-[1.7] font-semibold"
           style={{ fontFamily: "Aeonik, sans-serif", wordSpacing: "0.06em" }}
         >
           The Process
