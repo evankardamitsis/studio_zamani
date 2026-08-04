@@ -61,12 +61,21 @@ export default function AdvisoryPage() {
           style={{ wordSpacing: "0.04em" }}
         >
           <p>
-            Each project begins with the person, the place, and the way it is lived in.</p> <p>Through
-              Studio Zamani, I work with clients to create a more considered way of living with
-              furniture, objects, and works of art. Guided by my background in interior architecture,
-              design history, provenance, and material knowledge, I curate vintage and contemporary
-              design, historically significant pieces, works by emerging designers, and objects
-              chosen for their relevance to each project.
+            Each project begins with the person, the place, and the way it is lived in.
+            <span className="xl:hidden">
+              {" "}Through Studio Zamani, I work with clients to create a more considered way of
+              living with furniture, objects, and works of art. Guided by my background in interior
+              architecture, design history, provenance, and material knowledge, I curate vintage and
+              contemporary design, historically significant pieces, works by emerging designers, and
+              objects chosen for their relevance to each project.
+            </span>
+          </p>
+          <p className="hidden xl:block">
+            Through Studio Zamani, I work with clients to create a more considered way of living with
+            furniture, objects, and works of art. Guided by my background in interior architecture,
+            design history, provenance, and material knowledge, I curate vintage and contemporary
+            design, historically significant pieces, works by emerging designers, and objects chosen
+            for their relevance to each project.
           </p>
           <p>
             My aim is to help clients build collections that are coherent, thoughtful, and built to
