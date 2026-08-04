@@ -12,7 +12,7 @@ export default function ContactPage() {
             src="/images/contact_page.avif"
             alt="Studio Zamani"
             fill
-            className="object-cover object-left xl:object-contain xl:object-left"
+            className="object-contain object-left"
             sizes="(max-width: 1280px) 100vw, 70vw"
           />
         </div>
