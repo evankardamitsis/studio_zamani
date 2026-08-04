@@ -48,15 +48,18 @@ export default function AdvisoryPage() {
       </div>
 
       {/* Copy — title anchored to the lamp */}
-      <div className="w-full xl:w-1/2 xl:h-screen flex flex-col justify-start px-6 pb-12 pt-6 xl:px-10 xl:pb-10 xl:pt-[10vh]">
+      <div className="w-full xl:w-1/2 xl:h-screen flex flex-col justify-start px-6 pb-12 pt-6 xl:px-10 xl:pb-9 xl:pt-[6vh]">
         <p
-          className="text-[16px] uppercase tracking-[0.12em] leading-snug mb-4 font-semibold"
-          style={{ fontFamily: "Aeonik, sans-serif" }}
+          className="text-[16px] uppercase tracking-[0.12em] leading-[1.7] mb-4 font-semibold"
+          style={{ fontFamily: "Aeonik, sans-serif", wordSpacing: "0.06em" }}
         >
           Collectible Design Advisory
         </p>
 
-        <div className="flex flex-col gap-2.5 text-[15px] leading-[1.55] text-[#1a1a1a] max-w-[560px]">
+        <div
+          className="flex flex-col gap-2.5 text-[15px] leading-[2] text-[#1a1a1a] max-w-[560px]"
+          style={{ wordSpacing: "0.04em" }}
+        >
           <p>
             Each project begins with the person, the place, and the way it is lived in.</p> <p>Through
               Studio Zamani, I work with clients to create a more considered way of living with
@@ -72,8 +75,8 @@ export default function AdvisoryPage() {
         </div>
 
         <p
-          className="mt-6 mb-3 text-[16px] uppercase tracking-[0.12em] leading-snug font-semibold"
-          style={{ fontFamily: "Aeonik, sans-serif" }}
+          className="mt-6 mb-3 text-[16px] uppercase tracking-[0.12em] leading-[1.7] font-semibold"
+          style={{ fontFamily: "Aeonik, sans-serif", wordSpacing: "0.06em" }}
         >
           The Process
         </p>
