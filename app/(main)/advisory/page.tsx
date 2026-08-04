@@ -99,7 +99,23 @@ export default function AdvisoryPage() {
               >
                 {step.title}
               </p>
-              <p className="text-[14px] leading-[1.4] text-[#1a1a1a]/70">{step.body}</p>
+              <p className="text-[14px] leading-[1.4] text-[#1a1a1a]/70">
+                {step.title === "Value & Provenance" ? (
+                  <>
+                    Assessing maker, period, condition, and market standing before any recommendation{" "}
+                    <span className="hidden xl:block">is made.</span>
+                    <span className="xl:hidden">is made.</span>
+                  </>
+                ) : step.title === "Restoration & Reupholstery" ? (
+                  <>
+                    Coordinating upholstery, fabric selection, refinishing, and repairs to present each piece{" "}
+                    <span className="hidden xl:block">at its best.</span>
+                    <span className="xl:hidden">at its best.</span>
+                  </>
+                ) : (
+                  step.body
+                )}
+              </p>
             </div>
           ))}
         </div>
