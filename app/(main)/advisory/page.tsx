@@ -92,7 +92,7 @@ export default function AdvisoryPage() {
 
         <div className="flex flex-col gap-2 max-w-[560px]">
           {steps.map((step) => (
-            <div key={step.title} className="flex flex-col gap-1">
+            <div key={step.title} className="flex flex-col gap-2 xl:gap-1">
               <p
                 className="text-[14px] uppercase tracking-[0.04em] leading-snug text-[#1a1a1a] font-medium"
                 style={{ fontFamily: "Aeonik, sans-serif" }}
