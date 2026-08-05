@@ -48,16 +48,16 @@ export default function AdvisoryPage() {
       </div>
 
       {/* Copy — title anchored to the lamp */}
-      <div className="w-full xl:w-1/2 xl:h-screen flex flex-col justify-start px-6 pb-12 pt-6 xl:px-10 xl:pb-9 xl:pt-[6vh]">
+      <div className="w-full xl:w-1/2 xl:h-screen flex flex-col justify-start px-6 pb-12 pt-6 xl:px-10 xl:pb-6 xl:pt-[9vh]">
         <p
-          className="text-[16px] uppercase tracking-[0.12em] leading-[1.7] mb-4 font-semibold"
+          className="text-[16px] uppercase tracking-[0.12em] leading-[1.7] mb-4 xl:mb-2 font-semibold"
           style={{ fontFamily: "Aeonik, sans-serif", wordSpacing: "0.06em" }}
         >
           Collectible Design Advisory
         </p>
 
         <div
-          className="flex flex-col gap-1.5 text-[15px] leading-[2] text-[#1a1a1a] max-w-[560px]"
+          className="flex flex-col gap-1.5 xl:gap-1 text-[15px] leading-[2] text-[#1a1a1a] max-w-[560px]"
           style={{ wordSpacing: "0.04em" }}
         >
           <p>
@@ -84,13 +84,13 @@ export default function AdvisoryPage() {
         </div>
 
         <p
-          className="mt-5 mb-3 text-[16px] uppercase tracking-[0.12em] leading-[1.7] font-semibold"
+          className="mt-5 xl:mt-3 mb-3 xl:mb-2 text-[16px] uppercase tracking-[0.12em] leading-[1.7] font-semibold"
           style={{ fontFamily: "Aeonik, sans-serif", wordSpacing: "0.06em" }}
         >
           The Process
         </p>
 
-        <div className="flex flex-col gap-2 max-w-[560px]">
+        <div className="flex flex-col gap-2 xl:gap-1.5 max-w-[560px]">
           {steps.map((step) => (
             <div key={step.title} className="flex flex-col gap-2 xl:gap-1">
               <p
